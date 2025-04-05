@@ -15,7 +15,6 @@ public class GameController : MonoBehaviour {
 	public TextMeshProUGUI uiInteractionMessage;
 
 
-
 	public string state;
 	private string lastState;
 

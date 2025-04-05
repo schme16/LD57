@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using StarterAssets;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -22,8 +23,8 @@ public class PlayerScript : MonoBehaviour {
 	public bool lockCamera;
 	private bool lastLockCamera;
 	public bool lockMouse = true;
-	private bool debounce;
 	public float interactionDistance = 1.8f;
+	private bool debounce;
 
 	[Header("Components")]
 	public FirstPersonController firstPersonController;
@@ -33,10 +34,12 @@ public class PlayerScript : MonoBehaviour {
 	public AudioSource sfxSource;
 	public Animator animator;
 
+	[Header("Tracking")]
 	public InteractableScript interactScript;
 	private InteractableScript lastInteractScript;
 	private bool lastInteractScriptEnabled;
-	private Transform currentHitObject;
+	public Transform currentHitObject;
+	public Transform currentlyHeldObject;
 
 	public Vector2 interactionTextVisiblePosition = new Vector3(0, 20, 0);
 	public Vector2 interactionTextHiddenPosition = new Vector3(0, -25, 0);
@@ -45,9 +48,9 @@ public class PlayerScript : MonoBehaviour {
 	private float _moveSpeed;
 	private float _sprintSpeed;
 
+	public static PlayerScript player;
 
-
-	private async void Start() {
+	private void Start() {
 
 		//Set the game ontroller
 		gc = FindFirstObjectByType<GameController>();
@@ -56,8 +59,15 @@ public class PlayerScript : MonoBehaviour {
 		_moveSpeed = firstPersonController.MoveSpeed;
 		_sprintSpeed = firstPersonController.SprintSpeed;
 
+		//Set the initial walk and camera state
+		UpdateLockWalk(true);
+		UpdateLockCamera(true);
+
+		player = this;
+
 
 		//Enable the bg music
+		//TODO: make this a setting!
 		bgMusic.enabled = true;
 
 		//Play it
@@ -119,7 +129,7 @@ public class PlayerScript : MonoBehaviour {
 		if (!preventInteraction) {
 
 			//Do a ray cast
-			if (Physics.Raycast(gc.cam.transform.position, gc.cam.transform.forward, out var hitInfo, interactionDistance)) {
+			if (Physics.Raycast(gc.cam.transform.position + (gc.cam.transform.forward * 0.3f), gc.cam.transform.forward, out var hitInfo, interactionDistance)) {
 
 
 				//Is compatible
@@ -262,8 +272,8 @@ public class PlayerScript : MonoBehaviour {
 		return text.Replace("[keycode]", interactionKey.ToString());
 	}
 
-	private void UpdateLockWalk() {
-		if (lastLockMovement != lockMovement) {
+	private void UpdateLockWalk(bool force = false) {
+		if (lastLockMovement != lockMovement || force) {
 			lastLockMovement = lockMovement;
 			if (lockMovement) {
 				//Backup the movement speed
@@ -290,12 +300,17 @@ public class PlayerScript : MonoBehaviour {
 		}
 	}
 
-	private void UpdateLockCamera() {
-		if (lastLockCamera != lockCamera) {
+	private void UpdateLockCamera(bool force = false) {
+		if (lastLockCamera != lockCamera || force) {
 			lastLockCamera = lockCamera;
 			inputs.cursorInputForLook = !lockCamera;
 		}
 	}
+
+	public bool CanHold() {
+		return currentlyHeldObject is null || currentlyHeldObject.IsUnityNull();
+	}
+
 	private void OnDestroy() {
 
 	}
