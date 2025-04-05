@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using StarterAssets;
 using Unity.Mathematics;
@@ -26,9 +27,13 @@ public class PlayerScript : MonoBehaviour {
 	private bool lastLockCamera;
 	public bool lockMouse = true;
 	public float interactionDistance = 1.8f;
-	private bool debounce;
+	public float footstepAudioVolume = 0.5f;
+	public Vector2 interactionTextVisiblePosition = new Vector3(0, 20, 0);
+	public Vector2 interactionTextHiddenPosition = new Vector3(0, -25, 0);
+	public bool inWater;
 
 	[Header("Components")]
+	public CharacterController controller;
 	public FirstPersonController firstPersonController;
 	public StarterAssetsInputs inputs;
 	public PlayerInput playerInput;
@@ -36,6 +41,11 @@ public class PlayerScript : MonoBehaviour {
 	public AudioSource sfxSource;
 	public Animator animator;
 	public Transform HeldItemHolder;
+	public List<AudioClip> footstepsStone;
+	public List<AudioClip> footstepsWater;
+	public AudioClip playerLandStone;
+	public AudioClip playerLandWater;
+
 
 	[Header("Tracking")]
 	public InteractableScript interactScript;
@@ -44,14 +54,14 @@ public class PlayerScript : MonoBehaviour {
 	public Transform currentHitObject;
 	public PickupAndHold currentlyHeldObject;
 
-	public Vector2 interactionTextVisiblePosition = new Vector3(0, 20, 0);
-	public Vector2 interactionTextHiddenPosition = new Vector3(0, -25, 0);
 
+	private bool debounce;
 	private GameController gc;
 	private float _moveSpeed;
 	private float _sprintSpeed;
-
+	private float lastGrounded;
 	public static PlayerScript player;
+
 
 	private void Start() {
 
@@ -81,6 +91,9 @@ public class PlayerScript : MonoBehaviour {
 
 		//Mark the player's start state
 		SetState("playing");
+
+		firstPersonController.OnPlayerLand.AddListener(Landed);
+		firstPersonController.OnPlayerWalk.AddListener(Walked);
 	}
 
 	private void Update() {
@@ -343,9 +356,7 @@ public class PlayerScript : MonoBehaviour {
 		}
 
 		if (currentlyHeldObject.collider is not null) {
-			Debug.Log(5);
 			if (!currentlyHeldObject.isInsidePlayer) {
-				Debug.Log(6);
 				currentlyHeldObject.collider.excludeLayers = currentlyHeldObject.rbInitialMask;
 			}
 		}
@@ -353,9 +364,27 @@ public class PlayerScript : MonoBehaviour {
 		currentlyHeldObject = null;
 	}
 
+	private void Landed() {
+		if (lastGrounded < Time.time - 0.65f) {
+			lastGrounded = Time.time;
+			var sfxList = inWater ? playerLandWater : playerLandStone;
+			Debug.Log(3);
+
+			_.PlayClipAtPoint(sfxList, transform.TransformPoint(controller.center), footstepAudioVolume, Random.Range(0.75f, 1.15f));
+		}
+	}
+
+	private void Walked() {
+
+		var sfxList = inWater ? footstepsWater : footstepsStone;
+		_.PlayClipAtPoint(sfxList[Random.Range(0, sfxList.Count)], transform.TransformPoint(controller.center), footstepAudioVolume, Random.Range(0.75f, 1.15f));
+	}
+
 	private void OnDestroy() {
 
 	}
+
+
 
 	private void OnApplicationFocus(bool hasFocus) {
 		_.SetLockMode(lockMouse ? CursorLockMode.Locked : CursorLockMode.Confined);

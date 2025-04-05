@@ -51,9 +51,7 @@ public class PickupAndHold : MonoBehaviour {
 			return;
 		}
 
-		Debug.Log(1);
 		if (other.CompareTag("Player") && PlayerScript.player.currentlyHeldObject == this) {
-			Debug.Log(2);
 			isInsidePlayer = true;
 		}
 	}
@@ -66,13 +64,10 @@ public class PickupAndHold : MonoBehaviour {
 			return;
 		}
 
-		Debug.Log(3);
 		if (other.CompareTag("Player")) {
-			Debug.Log(4);
 			isInsidePlayer = false;
 
 			if (collider is not null && PlayerScript.player.currentlyHeldObject != this) {
-				Debug.Log(7);
 				collider.excludeLayers = rbInitialMask;
 			}
 		}

@@ -17,7 +17,23 @@ public class _ : MonoBehaviour {
 	public static void SetLockMode(CursorLockMode mode) {
 		Cursor.lockState = mode;
 	}
-	
+
+	public static AudioSource PlayClipAtPoint(AudioClip clip, Vector3 pos, float volume = 0.5f, float pitch = 1f, bool playOnAwake = true) {
+		var go = new GameObject("OneShotAudioClip");
+		go.transform.position = pos;
+
+		var source = go.AddComponent<AudioSource>();
+		source.loop = false;
+		source.volume = volume;
+		source.pitch = pitch;
+		source.clip = clip;
+		source.playOnAwake = playOnAwake;
+		source.Play();
+		
+		//Destroy(go, clip.length);
+		return source;
+	}
+
 	//Rotates a transform to a specified euler, can be awaited
 	public async static UniTask Rotate(Transform trans, Vector3 destination, float speed = 1.05f, EasingFunction.Ease easingFunction = EasingFunction.Ease.EaseInQuad) {
 
