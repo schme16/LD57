@@ -15,8 +15,6 @@ public class GameController : MonoBehaviour {
 	public TextMeshProUGUI uiInteractionMessage;
 
 
-	[Header("Settings")]
-	public float interactionDistance = 1;
 
 	public string state;
 	private string lastState;

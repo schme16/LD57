@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
@@ -12,13 +13,17 @@ public class PlayerScript : MonoBehaviour {
 
 
 
-	[Header("Player settings")]
+	[Header("Settings")]
 	public string state;
 	private string lastState;
 	public bool preventInteraction;
-	public bool canMove;
+	public bool lockMovement;
+	private bool lastLockMovement;
 	public bool lockCamera;
+	private bool lastLockCamera;
+	public bool lockMouse = true;
 	private bool debounce;
+	public float interactionDistance = 1.8f;
 
 	[Header("Components")]
 	public FirstPersonController firstPersonController;
@@ -32,13 +37,13 @@ public class PlayerScript : MonoBehaviour {
 	private InteractableScript lastInteractScript;
 	private bool lastInteractScriptEnabled;
 	private Transform currentHitObject;
-	public CursorLockMode cursorMode = CursorLockMode.Locked;
-	private CursorLockMode lastCursorMode;
 
 	public Vector2 interactionTextVisiblePosition = new Vector3(0, 20, 0);
 	public Vector2 interactionTextHiddenPosition = new Vector3(0, -25, 0);
 
 	private GameController gc;
+	private float _moveSpeed;
+	private float _sprintSpeed;
 
 
 
@@ -46,6 +51,11 @@ public class PlayerScript : MonoBehaviour {
 
 		//Set the game ontroller
 		gc = FindFirstObjectByType<GameController>();
+
+		//Set the initial movement and sprint speed values
+		_moveSpeed = firstPersonController.MoveSpeed;
+		_sprintSpeed = firstPersonController.SprintSpeed;
+
 
 		//Enable the bg music
 		bgMusic.enabled = true;
@@ -62,7 +72,7 @@ public class PlayerScript : MonoBehaviour {
 
 	private void Update() {
 
-		_.SetLockMode(cursorMode);
+		_.SetLockMode(lockMouse ? CursorLockMode.Locked : CursorLockMode.Confined);
 
 
 		//Has the state changed?
@@ -88,6 +98,12 @@ public class PlayerScript : MonoBehaviour {
 		}
 
 
+		//Checks if the player movement state has changed
+		UpdateLockWalk();
+
+		//Checks if the camera movement state has changed
+		UpdateLockCamera();
+
 		//Check for interactions
 		CheckForInteractable();
 
@@ -103,26 +119,21 @@ public class PlayerScript : MonoBehaviour {
 		if (!preventInteraction) {
 
 			//Do a ray cast
-			if (Physics.Raycast(gc.cam.transform.position, gc.cam.transform.forward, out var hitInfo, gc.interactionDistance)) {
+			if (Physics.Raycast(gc.cam.transform.position, gc.cam.transform.forward, out var hitInfo, interactionDistance)) {
+
 
 				//Is compatible
 				if (hitInfo.transform.CompareTag("Interactable")) {
 
 					//Was it different to the thing we were already looking at? 
 					if (hitInfo.transform != currentHitObject) {
-
 						//Update the current object test item
 						currentHitObject = hitInfo.transform;
 
 						//Get the interaction script
-						var interact = currentHitObject.GetComponent<InteractableScript>();
-
 						//Was there still no interaction script found?
-						if (interact is null) {
-
-							//Search the parent
-							interact = currentHitObject.GetComponentInParent<InteractableScript>();
-						}
+						//Search the parent
+						var interact = currentHitObject.GetComponent<InteractableScript>() ?? currentHitObject.GetComponentInParent<InteractableScript>();
 
 						//Did we find one, and was it enabled?
 						if (interact is not null && interact.enabled) {
@@ -138,14 +149,9 @@ public class PlayerScript : MonoBehaviour {
 							//Update the currently hit object with the interaction scripts transform, in case it's a parent
 							currentHitObject = interactScript.transform;
 
-
 							//Is the interaction in a valid state
-							if (interactScript.IsValid()) {
-								gc.uiInteractionMessage.SetText(CompileMessageText(interactScript.validInteractionText));
-							}
-							else {
-								gc.uiInteractionMessage.SetText(CompileMessageText(interactScript.invalidInteractionText));
-							}
+							//Set the UI text to the compiled version set in the script
+							gc.uiInteractionMessage.SetText(interactScript.IsValid() ? CompileMessageText(interactScript.validInteractionText) : CompileMessageText(interactScript.invalidInteractionText));
 
 						}
 						else {
@@ -203,7 +209,7 @@ public class PlayerScript : MonoBehaviour {
 			currentHitObject = null;
 		}
 
-		
+
 		//Did the interact script value change?
 		if (lastInteractScriptEnabled != interactScript) {
 			lastInteractScriptEnabled = interactScript;
@@ -256,15 +262,49 @@ public class PlayerScript : MonoBehaviour {
 		return text.Replace("[keycode]", interactionKey.ToString());
 	}
 
+	private void UpdateLockWalk() {
+		if (lastLockMovement != lockMovement) {
+			lastLockMovement = lockMovement;
+			if (lockMovement) {
+				//Backup the movement speed
+				_moveSpeed = firstPersonController.MoveSpeed;
+
+				//Set it to 0
+				firstPersonController.MoveSpeed = 0;
+
+				//Backup the sprint speed
+				_sprintSpeed = firstPersonController.SprintSpeed;
+
+				//Set it to 0
+				firstPersonController.SprintSpeed = 0;
+
+			}
+			else {
+
+				//Restore the movement speed
+				firstPersonController.MoveSpeed = _moveSpeed;
+
+				//Restore the sprint speed
+				firstPersonController.SprintSpeed = _sprintSpeed;
+			}
+		}
+	}
+
+	private void UpdateLockCamera() {
+		if (lastLockCamera != lockCamera) {
+			lastLockCamera = lockCamera;
+			inputs.cursorInputForLook = !lockCamera;
+		}
+	}
 	private void OnDestroy() {
 
 	}
 
 	private void OnApplicationFocus(bool hasFocus) {
-		_.SetLockMode(cursorMode);
+		_.SetLockMode(lockMouse ? CursorLockMode.Locked : CursorLockMode.Confined);
 	}
 
 	private void OnApplicationPause(bool pauseStatus) {
-		_.SetLockMode(cursorMode);
+		_.SetLockMode(lockMouse ? CursorLockMode.Locked : CursorLockMode.Confined);
 	}
 }

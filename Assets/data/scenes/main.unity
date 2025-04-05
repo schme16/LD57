@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.375
+      value: 1.755
       objectReference: {fileID: 0}
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
       propertyPath: m_LocalPosition.z
@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 4135013736049992663}
+    - target: {fileID: 8762286024517199034, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
+      propertyPath: ShoulderOffset.y
+      value: 0.38
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -223,7 +227,6 @@ MonoBehaviour:
   reticule: {fileID: 0}
   uiInteractionMessageRectTransform: {fileID: 545627956}
   uiInteractionMessage: {fileID: 545627957}
-  interactionDistance: 1
   state: 
   keyInteract: 101
 --- !u!4 &156904595
@@ -250,11 +253,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 165621797}
+  - component: {fileID: 165621801}
   - component: {fileID: 165621800}
   - component: {fileID: 165621799}
   - component: {fileID: 165621798}
   - component: {fileID: 165621802}
-  - component: {fileID: 165621801}
   m_Layer: 3
   m_Name: Cube
   m_TagString: Interactable
@@ -683,7 +686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.375
+      value: 1.755
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.z
@@ -927,7 +930,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1285181566}
   - component: {fileID: 1285181565}
-  - component: {fileID: 1285181564}
   - component: {fileID: 1285181563}
   m_Layer: 0
   m_Name: UI Camera
@@ -980,14 +982,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1285181564
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285181562}
-  m_Enabled: 1
 --- !u!20 &1285181565
 Camera:
   m_ObjectHideFlags: 0
@@ -1452,13 +1446,37 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5420857361864443639}
     - target: {fileID: 908859343605745305, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 908859343605745305, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
+      propertyPath: lockMouse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 908859343605745305, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 8616685849451108999}
     - target: {fileID: 908859343605745305, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
+      propertyPath: interactionDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 908859343605745305, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
       propertyPath: firstPersonController
       value: 
       objectReference: {fileID: 8616685849451109004}
+    - target: {fileID: 908859343605745305, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
+      propertyPath: interactionTextVisiblePosition.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075207753552198707, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075207753552198707, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 2075207753552198707, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1497,6 +1515,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2075207753552198707, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075207753552198707, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9164671646620541412, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
