@@ -1,8 +1,10 @@
 using Cysharp.Threading.Tasks;
 using StarterAssets;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
@@ -33,13 +35,14 @@ public class PlayerScript : MonoBehaviour {
 	public AudioSource bgMusic;
 	public AudioSource sfxSource;
 	public Animator animator;
+	public Transform HeldItemHolder;
 
 	[Header("Tracking")]
 	public InteractableScript interactScript;
 	private InteractableScript lastInteractScript;
 	private bool lastInteractScriptEnabled;
 	public Transform currentHitObject;
-	public Transform currentlyHeldObject;
+	public PickupAndHold currentlyHeldObject;
 
 	public Vector2 interactionTextVisiblePosition = new Vector3(0, 20, 0);
 	public Vector2 interactionTextHiddenPosition = new Vector3(0, -25, 0);
@@ -117,9 +120,13 @@ public class PlayerScript : MonoBehaviour {
 		//Check for interactions
 		CheckForInteractable();
 
+		//Temp
+		if (Input.GetKeyDown(KeyCode.T) && currentlyHeldObject is not null) {
+			DropHeldObject();
+		}
+
 	}
 
-	//Set the players current state
 	private void SetState(string newState) {
 		state = newState;
 	}
@@ -309,6 +316,41 @@ public class PlayerScript : MonoBehaviour {
 
 	public bool CanHold() {
 		return currentlyHeldObject is null || currentlyHeldObject.IsUnityNull();
+	}
+
+	public void HoldObject(PickupAndHold obj) {
+		currentlyHeldObject = obj;
+		currentlyHeldObject.transform.SetParent(HeldItemHolder);
+		currentlyHeldObject.transform.localPosition = currentlyHeldObject.HoldPosition;
+		currentlyHeldObject.transform.localRotation = Quaternion.identity;
+		currentlyHeldObject.transform.eulerAngles = new Vector3(0, currentlyHeldObject.transform.eulerAngles.y, currentlyHeldObject.transform.eulerAngles.z);
+		if (currentlyHeldObject.rb is not null) {
+			currentlyHeldObject.rb.isKinematic = true;
+		}
+		if (currentlyHeldObject.collider is not null) {
+			currentlyHeldObject.collider.excludeLayers = currentlyHeldObject.rbMaskWhenHeld;
+		}
+	}
+
+	public async void DropHeldObject() {
+
+		currentlyHeldObject.transform.SetParent(null);
+		if (currentlyHeldObject.rb is not null) {
+			currentlyHeldObject.rb.isKinematic = false;
+			currentlyHeldObject.debounce = true;
+			await UniTask.Delay(250);
+			currentlyHeldObject.debounce = false;
+		}
+
+		if (currentlyHeldObject.collider is not null) {
+			Debug.Log(5);
+			if (!currentlyHeldObject.isInsidePlayer) {
+				Debug.Log(6);
+				currentlyHeldObject.collider.excludeLayers = currentlyHeldObject.rbInitialMask;
+			}
+		}
+
+		currentlyHeldObject = null;
 	}
 
 	private void OnDestroy() {
