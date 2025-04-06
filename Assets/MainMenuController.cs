@@ -42,29 +42,6 @@ public class MainMenuController : MonoBehaviour {
 		easeIn = EasingFunction.Ease.EaseInOutBack;
 		easeOut = EasingFunction.Ease.EaseInOutBack;
 
-
-		currentSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
-		currentMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.25f);
-		audioSlider.SetValueWithoutNotify(currentSFXVolume);
-		musicSlider.SetValueWithoutNotify(currentMusicVolume);
-
-		await UniTask.Delay(250);
-
-		
-		masterBus = RuntimeManager.GetBus("bus:/");
-
-		MusicBus = RuntimeManager.GetBus("bus:/Music");
-		MusicBus.setVolume(currentSFXVolume);
-
-		SFXBus = RuntimeManager.GetBus("bus:/SFX");
-		SFXBus.setVolume(currentSFXVolume);
-
-		ambienceEmitter.Play();
-		
-		SetSFXVolume(currentSFXVolume);
-		SetMusicVolume(currentMusicVolume);
-
-
 		optionsTitle.anchoredPosition = new Vector3(0, 50, 0);
 		audioSliderRect.anchoredPosition = new Vector3(0, -438.8226f, 0);
 		musicSliderRect.anchoredPosition = new Vector3(0, -588.8226f, 0);
@@ -75,18 +52,32 @@ public class MainMenuController : MonoBehaviour {
 		StartButton.anchoredPosition = new Vector3(0, -115, 0);
 		OptionsButton.anchoredPosition = new Vector3(0, -215, 0);
 
-
-
 		ShowMainMenu();
 
-		/*if (muteState) {
-			muteIcon.SetActive(true);
-			unMuteIcon.SetActive(false);
-		}
-		else {
-			muteIcon.SetActive(false);
-			unMuteIcon.SetActive(true);
-		}*/
+		
+		
+		currentSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+		currentMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.25f);
+		audioSlider.SetValueWithoutNotify(currentSFXVolume);
+		musicSlider.SetValueWithoutNotify(currentMusicVolume);
+
+		await UniTask.Delay(250);
+		
+		masterBus = RuntimeManager.GetBus("bus:/");
+
+		MusicBus = RuntimeManager.GetBus("bus:/Music");
+		MusicBus.setVolume(currentSFXVolume);
+
+		SFXBus = RuntimeManager.GetBus("bus:/SFX");
+		SFXBus.setVolume(currentSFXVolume);
+
+		await UniTask.Delay(1000);
+		ambienceEmitter.Play();
+		
+		SetSFXVolume(currentSFXVolume);
+		SetMusicVolume(currentMusicVolume);
+
+
 	}
 
 	// Update is called once per frame
