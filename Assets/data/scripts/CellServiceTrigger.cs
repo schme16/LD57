@@ -15,7 +15,7 @@ public class CellServiceTrigger : MonoBehaviour {
 
 
 	private void OnTriggerEnter(Collider other) {
-		if (other.CompareTag("Player") && canTrigger) {
+		if (enabled && other.CompareTag("Player") && canTrigger) {
 			if (canTrigger) {
 				PlayerScript.player.AnswerPhone();
 				PlayAllMessages();

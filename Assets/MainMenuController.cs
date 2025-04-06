@@ -19,7 +19,7 @@ public class MainMenuController : MonoBehaviour {
 	public Slider musicSlider;
 	public RectTransform musicSliderRect;
 	public RectTransform BackToMainMenuButton;
-	//public RectTransform BackToGameButton;
+	public StudioEventEmitter ambienceEmitter;
 	public ScreenFade screenFader;
 
 	public bool muteState;
@@ -42,13 +42,6 @@ public class MainMenuController : MonoBehaviour {
 		easeIn = EasingFunction.Ease.EaseInOutBack;
 		easeOut = EasingFunction.Ease.EaseInOutBack;
 
-		masterBus = RuntimeManager.GetBus("bus:/");
-
-		MusicBus = RuntimeManager.GetBus("bus:/Music");
-		MusicBus.setVolume(currentSFXVolume);
-
-		SFXBus = RuntimeManager.GetBus("bus:/SFX");
-		SFXBus.setVolume(currentSFXVolume);
 
 		currentSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
 		currentMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.25f);
@@ -57,6 +50,17 @@ public class MainMenuController : MonoBehaviour {
 
 		await UniTask.Delay(250);
 
+		
+		masterBus = RuntimeManager.GetBus("bus:/");
+
+		MusicBus = RuntimeManager.GetBus("bus:/Music");
+		MusicBus.setVolume(currentSFXVolume);
+
+		SFXBus = RuntimeManager.GetBus("bus:/SFX");
+		SFXBus.setVolume(currentSFXVolume);
+
+		ambienceEmitter.Play();
+		
 		SetSFXVolume(currentSFXVolume);
 		SetMusicVolume(currentMusicVolume);
 

@@ -269,9 +269,7 @@ public class PlayerScript : MonoBehaviour {
 			if (interact is not null) {
 				//Is the interaction in a valid state
 				gc.uiInteractionMessage.SetText(CompileMessageText(interact.text));
-				Debug.Log($"-1 | {gc.uiInteractionMessage.text}");
 			}
-			Debug.Log($"0 | {interact.text}");
 
 			if (gc.uiInteractionMessageRectTransform.anchoredPosition != interactionTextVisiblePosition) {
 
