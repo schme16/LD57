@@ -57,6 +57,7 @@ public class PlayerScript : MonoBehaviour {
 	public bool lastInteractScriptEnabled;
 	public Transform currentHitObject;
 	public PickupAndHold currentlyHeldObject;
+	private PickupAndHold lastHeldObject;
 
 
 	private bool debounce;
@@ -144,11 +145,9 @@ public class PlayerScript : MonoBehaviour {
 
 		//Are we currently holding an object?
 		if (currentlyHeldObject is not null) {
-			Debug.Log(6);
 
 			//Did we try to release it?
 			if (Input.GetKeyDown(GameController._keyInteract)) {
-				Debug.Log(7);
 
 				//Drop it
 				DropHeldObject();
@@ -157,7 +156,6 @@ public class PlayerScript : MonoBehaviour {
 			//Didn't try and release it
 			else {
 
-				Debug.Log(8);
 				//Move it into position 
 				MoveHeldObject();
 			}
@@ -172,22 +170,18 @@ public class PlayerScript : MonoBehaviour {
 
 	private void CheckForInteractable() {
 
-		Debug.Log(1);
 		if (!preventInteraction && currentlyHeldObject is null) {
-			Debug.Log(2);
 
 			//Do a ray cast
 			if (Physics.Raycast(gc.cam.transform.position + (gc.cam.transform.forward * 0.3f), gc.cam.transform.forward, out var hitInfo, interactionDistance, interactionLayers)) {
-				Debug.Log(3);
 
 
 				//Is compatible
 				if (hitInfo.transform.CompareTag("Interactable")) {
-					Debug.Log(4);
 
 					//Was it different to the thing we were already looking at? 
 					if (hitInfo.transform != currentHitObject) {
-						Debug.Log(5);
+
 						//Update the current object test item
 						currentHitObject = hitInfo.transform;
 
@@ -199,10 +193,6 @@ public class PlayerScript : MonoBehaviour {
 						//Did we find one, and was it enabled?
 						if (interact is not null && interact.enabled) {
 
-							/*//Mark the old item as not in view
-							if (interactScript is not null) {
-								interactScript.inView = false;
-							}*/
 
 							//Update the interactable item shorthand
 							interactScript = interact;
@@ -210,15 +200,10 @@ public class PlayerScript : MonoBehaviour {
 							//Update the currently hit object with the interaction scripts transform, in case it's a parent
 							currentHitObject = interactScript.transform;
 
-							//Is the interaction in a valid state
-							//Set the UI text to the compiled version set in the script
-							gc.uiInteractionMessage.SetText(interactScript.IsValid() ? CompileMessageText(interactScript.validInteractionText) : CompileMessageText(interactScript.invalidInteractionText));
+
 
 						}
 						else {
-							/*if (interactScript is not null) {
-								interactScript.inView = false;
-							}*/
 							interactScript = null;
 							currentHitObject = null;
 						}
@@ -227,9 +212,6 @@ public class PlayerScript : MonoBehaviour {
 
 				//Not compatible
 				else {
-					/*if (interactScript is not null) {
-						interactScript.inView = false;
-					}*/
 					interactScript = null;
 					currentHitObject = null;
 				}
@@ -238,60 +220,53 @@ public class PlayerScript : MonoBehaviour {
 
 			//Nothing found
 			else {
-				/*if (interactScript is not null) {
-					interactScript.inView = false;
-				}*/
 				interactScript = null;
 				currentHitObject = null;
 			}
 
-
-			//Check for a change flag on interactables
-			if (interactScript is not null && interactScript.enabled) {
-
-				//Is the interaction in a valid state
-				if (interactScript.IsValid()) {
-					gc.uiInteractionMessage.SetText(CompileMessageText(interactScript.validInteractionText));
-				}
-				else {
-					gc.uiInteractionMessage.SetText(CompileMessageText(interactScript.invalidInteractionText));
-				}
-
-			}
 		}
 
 		//Not allowed to interact, so clear currently interacted stuff too
 		else {
-			/*if (interactScript is not null) {
-				interactScript.inView = false;
-			}*/
 
 			interactScript = null;
 			currentHitObject = null;
 		}
 
 
-		//Did the interact script value change?
-		if (lastInteractScriptEnabled != interactScript) {
-			UnityEngine.Debug.Log(12);
+		/*//Did the interact script value change?
+		if (lastInteractScriptEnabled != interactScript || lastHeldObject != currentlyHeldObject) {
+
+			//Sync the comparitor
 			lastInteractScriptEnabled = interactScript;
-			UpdateInteractionText();
-		}
+
+			//Sync the comparitor
+			lastHeldObject = currentlyHeldObject;
+		}*/
+
+		//Update the UI text
+		UpdateInteractionText();
 
 	}
 
 	private void UpdateInteractionText() {
 
 		//Is the interactable script set, and enabled?
-		if (interactScript is not null && interactScript.enabled && !preventInteraction) {
+		if ((interactScript is not null && interactScript.enabled && !preventInteraction) || currentlyHeldObject is not null) {
 
-			/*//Mark it as "in view"
-			interactScript.inView = true;*/
+
+			var interact = interactScript ?? currentlyHeldObject.interact;
+			if (interact is not null) {
+				//Is the interaction in a valid state
+				gc.uiInteractionMessage.SetText(CompileMessageText(interact.text));
+				Debug.Log($"-1 | {gc.uiInteractionMessage.text}");
+			}
+			Debug.Log($"0 | {interact.text}");
 
 			if (gc.uiInteractionMessageRectTransform.anchoredPosition != interactionTextVisiblePosition) {
 
 				//Slide the text up onto the screen
-				_.Translate(gc.uiInteractionMessageRectTransform, interactionTextVisiblePosition, 5f, EasingFunction.Ease.EaseOutQuad);
+				_.Translate(gc.uiInteractionMessageRectTransform, interactionTextVisiblePosition, 7f, EasingFunction.Ease.EaseOutQuad);
 			}
 		}
 
@@ -301,7 +276,7 @@ public class PlayerScript : MonoBehaviour {
 			if (gc.uiInteractionMessageRectTransform.anchoredPosition != interactionTextHiddenPosition) {
 
 				//Slide the text down off the screen
-				_.Translate(gc.uiInteractionMessageRectTransform, interactionTextHiddenPosition, 5f, EasingFunction.Ease.EaseOutQuad);
+				_.Translate(gc.uiInteractionMessageRectTransform, interactionTextHiddenPosition, 7f, EasingFunction.Ease.EaseOutQuad);
 
 			}
 		}
@@ -381,6 +356,8 @@ public class PlayerScript : MonoBehaviour {
 		if (currentlyHeldObject.collider is not null) {
 			currentlyHeldObject.collider.excludeLayers = currentlyHeldObject.rbMaskWhenHeld;
 		}
+
+
 
 		debounce = true;
 		await UniTask.DelayFrame(1);

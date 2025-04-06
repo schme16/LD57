@@ -4,13 +4,14 @@ using UnityEngine;
 public class PickupAndHold : MonoBehaviour {
 
 	public bool canPickup;
-	public string validText = "Pickup ([keycode])";
+	public string validTextPickup = "Pickup ([keycode])";
+	public string validTextDrop = "Drop ([keycode])";
 	public string invalidText;
 	public Vector3 HoldPosition = new Vector3(0, 0, 0);
 	[NonSerialized]
 	public Rigidbody rb;
 	public Collider collider;
-	private InteractableScript interact;
+	public InteractableScript interact;
 	public LayerMask rbMaskWhenHeld;
 	[NonSerialized]
 	public LayerMask rbInitialMask;
@@ -29,12 +30,29 @@ public class PickupAndHold : MonoBehaviour {
 
 		interact = GetComponent<InteractableScript>();
 
-		interact.validInteractionText = validText;
+		
 
 		interact.invalidInteractionText = invalidText;
 
 		interact.IsValid = () => {
-			return canPickup && PlayerScript.player.interactScript == interact && PlayerScript.player.CanHold();
+			
+			//Can be picked up
+			if (canPickup && PlayerScript.player.interactScript == interact && PlayerScript.player.CanHold()) {
+				Debug.Log(1);
+				interact.validInteractionText = validTextPickup;
+				return true;
+			}
+			else if (PlayerScript.player.currentlyHeldObject is not null && PlayerScript.player.currentlyHeldObject == this) {
+
+				interact.validInteractionText = validTextDrop;
+				Debug.Log($"2 - {interact.validInteractionText}");
+				return true;
+			}
+			else {
+				Debug.Log(3);
+				return false;
+			}
+
 		};
 
 		interact.OnInteract.AddListener(() => {

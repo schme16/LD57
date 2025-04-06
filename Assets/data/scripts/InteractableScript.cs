@@ -5,14 +5,15 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Outline))]
 public class InteractableScript : MonoBehaviour {
 
+	public string text;
 	public string validInteractionText;
-	public string lastValidInteractionText;
+	private string lastValidInteractionText;
 	public string invalidInteractionText;
-	public string lastInvalidInteractionText;
+	private string lastInvalidInteractionText;
 	public UnityEvent OnInteract;
 	public Func<bool> IsValid = () => false;
 	public KeyCode interactionKey;
-	private bool valid;
+	public bool valid;
 	private bool lastValid;
 	private bool lastInView;
 	private bool inView;
@@ -50,49 +51,50 @@ public class InteractableScript : MonoBehaviour {
 
 		inView = PlayerScript.player.interactScript == this;
 
-		//Was a validator func set?
-		if (IsValid is not null) {
+		//Get the validator value
+		valid = IsValid();
 
-			//Get the validator value
-			valid = IsValid();
+		if (valid) {
+			text = validInteractionText;
+		}
+		else {
 
-			//Are we in range?
-			if (inView || inView != lastInView) {
+			text = invalidInteractionText;
+		}
+
+		//Are we in range?
+		if (inView || inView != lastInView) {
 
 
-				//Only update the text state on changes
-				if (lastInView != inView || valid != lastValid || validInteractionText != lastValidInteractionText || invalidInteractionText != lastInvalidInteractionText) {
+			//Only update the text state on changes
+			if (lastInView != inView || valid != lastValid || validInteractionText != lastValidInteractionText || invalidInteractionText != lastInvalidInteractionText) {
 
-					//Update the last in range value
-					lastInView = inView;
+				//Update the last in range value
+				lastInView = inView;
 
-					//Update the last valid value
-					lastValid = valid;
+				//Update the last valid value
+				lastValid = valid;
 
-					//Update the last valid text value
-					lastValidInteractionText = validInteractionText;
+				//Update the last valid text value
+				lastValidInteractionText = validInteractionText;
 
-					//Update the last invalid text value
-					lastInvalidInteractionText = invalidInteractionText;
-				}
+				//Update the last invalid text value
+				lastInvalidInteractionText = invalidInteractionText;
 			}
+		}
 
-			//If both in range, and valid
-			if (inView && valid) {
-				Debug.Log(9);
+		//If both in range, and valid
+		if (inView && valid) {
 
-				//Was the interact key pressed?
-				if (Input.GetKeyDown(GameController._keyInteract)) {
-					Debug.Log(10);
+			//Was the interact key pressed?
+			if (Input.GetKeyDown(GameController._keyInteract)) {
 
-					//Was an interaction function set?
-					if (OnInteract is not null) {
+				//Was an interaction function set?
+				if (OnInteract is not null) {
 
-						Debug.Log(11);
 
-						//Run the func
-						OnInteract.Invoke();
-					}
+					//Run the func
+					OnInteract.Invoke();
 				}
 			}
 		}
