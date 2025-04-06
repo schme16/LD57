@@ -49,6 +49,7 @@ public class PlayerScript : MonoBehaviour {
 	public List<EventReference> footstepsWater;
 	public EventReference playerLandStone;
 	public EventReference playerLandWater;
+	public StudioEventEmitter phoneCallEmitter;
 
 
 	[Header("Tracking")]
@@ -66,6 +67,7 @@ public class PlayerScript : MonoBehaviour {
 	private float _sprintSpeed;
 	private float lastGrounded;
 	public static PlayerScript player;
+	
 
 
 	private void Start() {

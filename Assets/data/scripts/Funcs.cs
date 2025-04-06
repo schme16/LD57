@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class _ : MonoBehaviour {
 
@@ -34,6 +35,96 @@ public class _ : MonoBehaviour {
 
 		Destroy(go, clip.length);
 		return source;
+	}
+
+
+	//Scales a transform to a specified Vector3, can be awaited
+	public async static UniTask FadeOut(SpriteRenderer sprite, float speed = 1.05f, EasingFunction.Ease easingFunction = EasingFunction.Ease.EaseInQuad) {
+
+		float t = 0f;
+		var startValue = sprite.color;
+		var easeing = new EasingFunction().GetEasingFunction(easingFunction);
+
+		while (t < 1) {
+
+			//Set the angle
+			sprite.color = Color.Lerp(startValue, new Color(startValue.r, startValue.g, startValue.b, 0), easeing(0, 1, t));
+
+			//Update the time value
+			t = Mathf.Clamp(t + (Time.deltaTime * speed), 0, 1);
+			await UniTask.Yield(PlayerLoopTiming.Update);
+		}
+
+		sprite.color = new Color(startValue.r, startValue.g, startValue.b, 0);
+	}
+
+
+
+
+	//Scales a transform to a specified Vector3, can be awaited
+	public async static UniTask FadeIn(SpriteRenderer sprite, float speed = 1.05f, EasingFunction.Ease easingFunction = EasingFunction.Ease.EaseInQuad) {
+
+		float t = 0f;
+		var startValue = sprite.color;
+		var easeing = new EasingFunction().GetEasingFunction(easingFunction);
+
+		while (t < 1) {
+
+			//Set the angle
+			sprite.color = Color.Lerp(startValue, new Color(startValue.r, startValue.g, startValue.b, 1), easeing(0, 1, t));
+
+			//Update the time value
+			t = Mathf.Clamp(t + (Time.deltaTime * speed), 0, 1);
+			await UniTask.Yield(PlayerLoopTiming.Update);
+		}
+
+		sprite.color = new Color(startValue.r, startValue.g, startValue.b, 1);
+	}
+
+
+
+
+	//Scales a transform to a specified Vector3, can be awaited
+	public async static UniTask FadeOut(Image sprite, float speed = 1.05f, EasingFunction.Ease easingFunction = EasingFunction.Ease.EaseInQuad) {
+
+		float t = 0f;
+		var startValue = sprite.color;
+		var easeing = new EasingFunction().GetEasingFunction(easingFunction);
+
+		while (t < 1) {
+
+			//Set the angle
+			sprite.color = Color.Lerp(startValue, new Color(startValue.r, startValue.g, startValue.b, 1), easeing(0, 1, t));
+
+			//Update the time value
+			t = Mathf.Clamp(t + (Time.deltaTime * speed), 0, 1);
+			await UniTask.Yield(PlayerLoopTiming.Update);
+		}
+
+		sprite.color = new Color(startValue.r, startValue.g, startValue.b, 1);
+	}
+
+
+
+
+	//Scales a transform to a specified Vector3, can be awaited
+	public async static UniTask FadeIn(Image sprite, float speed = 1.05f, EasingFunction.Ease easingFunction = EasingFunction.Ease.EaseInQuad) {
+
+		float t = 0f;
+		var startValue = sprite.color;
+		var easeing = new EasingFunction().GetEasingFunction(easingFunction);
+
+		while (t < 1) {
+
+			//Set the angle
+			sprite.color = Color.Lerp(startValue, new Color(startValue.r, startValue.g, startValue.b, 0), easeing(0, 1, t));
+
+			//Update the time value
+			t = Mathf.Clamp(t + (Time.deltaTime * speed), 0, 1);
+			await UniTask.Yield(PlayerLoopTiming.Update);
+		}
+
+		sprite.color = new Color(startValue.r, startValue.g, startValue.b, 0);
 	}
 
 	//Rotates a transform to a specified euler, can be awaited

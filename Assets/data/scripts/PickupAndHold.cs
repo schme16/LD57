@@ -38,18 +38,15 @@ public class PickupAndHold : MonoBehaviour {
 			
 			//Can be picked up
 			if (canPickup && PlayerScript.player.interactScript == interact && PlayerScript.player.CanHold()) {
-				Debug.Log(1);
 				interact.validInteractionText = validTextPickup;
 				return true;
 			}
 			else if (PlayerScript.player.currentlyHeldObject is not null && PlayerScript.player.currentlyHeldObject == this) {
 
 				interact.validInteractionText = validTextDrop;
-				Debug.Log($"2 - {interact.validInteractionText}");
 				return true;
 			}
 			else {
-				Debug.Log(3);
 				return false;
 			}
 
