@@ -1,7 +1,8 @@
-const express = require('express')
-const serveStatic = require('serve-static')
-const app = express()
-
+let  express = require('express')
+let  serveStatic = require('serve-static')
+let {createProxyMiddleware} = require('http-proxy-middleware')
+let  app = express()
+/*
 app.use(serveStatic(`${__dirname}/../Builds`, {
   setHeaders: (res, path) => {
     if (path.endsWith('.wasm.br')) {
@@ -16,7 +17,15 @@ app.use(serveStatic(`${__dirname}/../Builds`, {
       res.setHeader('Content-Encoding', 'gzip');
     }
   }
-}));
+}));*/
+
+
+//Announcements
+  app.use(createProxyMiddleware({
+    target: 'http://localhost:61405/',
+    xfwd: true,
+    changeOrigin: true
+  }))
 
 app.listen(3000, () => {
   console.log('Server has started!')

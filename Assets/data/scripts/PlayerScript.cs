@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using FMODUnity;
 using StarterAssets;
 using Unity.Mathematics;
 using Unity.VisualScripting;
@@ -41,10 +42,10 @@ public class PlayerScript : MonoBehaviour {
 	public AudioSource sfxSource;
 	public Animator animator;
 	public Transform HeldItemHolder;
-	public List<AudioClip> footstepsStone;
-	public List<AudioClip> footstepsWater;
-	public AudioClip playerLandStone;
-	public AudioClip playerLandWater;
+	public List<EventReference> footstepsStone;
+	public List<EventReference> footstepsWater;
+	public EventReference playerLandStone;
+	public EventReference playerLandWater;
 
 
 	[Header("Tracking")]
@@ -81,10 +82,10 @@ public class PlayerScript : MonoBehaviour {
 
 		//Enable the bg music
 		//TODO: make this a setting!
-		bgMusic.enabled = true;
+		//bgMusic.enabled = true;
 
 		//Play it
-		bgMusic.Play();
+		//bgMusic.Play();
 
 		//Set the interaction ui message to the default hidden position
 		gc.uiInteractionMessageRectTransform.anchoredPosition = new Vector3(0, -25, 0);
@@ -368,16 +369,19 @@ public class PlayerScript : MonoBehaviour {
 		if (lastGrounded < Time.time - 0.65f) {
 			lastGrounded = Time.time;
 			var sfxList = inWater ? playerLandWater : playerLandStone;
-			Debug.Log(3);
 
-			_.PlayClipAtPoint(sfxList, transform.TransformPoint(controller.center), footstepAudioVolume, Random.Range(0.75f, 1.15f));
+			AudioManager.instance.PlaceOneShot(sfxList, transform.TransformPoint(controller.center));
+			//_.PlayClipAtPoint(sfxList, transform.TransformPoint(controller.center), footstepAudioVolume, Random.Range(0.75f, 1.15f));
 		}
 	}
 
 	private void Walked() {
 
+
 		var sfxList = inWater ? footstepsWater : footstepsStone;
-		_.PlayClipAtPoint(sfxList[Random.Range(0, sfxList.Count)], transform.TransformPoint(controller.center), footstepAudioVolume, Random.Range(0.75f, 1.15f));
+		AudioManager.instance.PlaceOneShot(sfxList[Random.Range(0, sfxList.Count)], transform.TransformPoint(controller.center));
+
+		//_.PlayClipAtPoint(sfxList[Random.Range(0, sfxList.Count)], transform.TransformPoint(controller.center), footstepAudioVolume, Random.Range(0.75f, 1.15f));
 	}
 
 	private void OnDestroy() {

@@ -1,0 +1,7 @@
+{53fcae6d-c203-4e1a-b370-9b62a6985c86} bank:/Master
+{cbe18eb9-b378-0258-3539-119c576b5a1e} bank:/Master.strings
+{3d0401d9-a49c-4233-a5bc-376b20b24adc} bank:/SFX
+{b4dd0f1d-b932-4140-99bf-68acd2f2a0a5} bus:/
+{2a138226-72c8-40ef-83cd-24ce0620e01a} bus:/Reverb
+{ea8ec451-fc38-4d91-8aca-2a5a8ff65e3b} event:/FootstepReverb
+{369789b8-630d-45c2-acd5-11128121a561} event:/FootstepReverb 2

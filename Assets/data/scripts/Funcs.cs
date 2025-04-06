@@ -28,9 +28,11 @@ public class _ : MonoBehaviour {
 		source.pitch = pitch;
 		source.clip = clip;
 		source.playOnAwake = playOnAwake;
-		source.Play();
-		
-		//Destroy(go, clip.length);
+		if (playOnAwake) {
+			source.Play();
+		}
+
+		Destroy(go, clip.length);
 		return source;
 	}
 

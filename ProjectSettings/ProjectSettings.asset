@@ -823,7 +823,8 @@ PlayerSettings:
   webGLWebAssemblyBigInt: 0
   webGLCloseOnQuit: 0
   webWasm2023: 1
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    WebGL: DREAMTECK_SPLINES
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
