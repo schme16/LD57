@@ -161,11 +161,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.18
+      value: -2.68
       objectReference: {fileID: 0}
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4300003
+      value: -2.9300003
       objectReference: {fileID: 0}
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1506,11 +1506,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.18
+      value: -2.68
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4300003
+      value: -2.9300003
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4214,11 +4214,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2075207753552198707, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.18
+      value: -2.68
       objectReference: {fileID: 0}
     - target: {fileID: 2075207753552198707, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.26
+      value: -4.76
       objectReference: {fileID: 0}
     - target: {fileID: 2075207753552198707, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4283,6 +4283,10 @@ PrefabInstance:
     - target: {fileID: 7846079722599619599, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
       propertyPath: GroundLayers.m_Bits
       value: 137
+      objectReference: {fileID: 0}
+    - target: {fileID: 7846079722599619599, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
+      propertyPath: timeBetweenSprintingFootsteps
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 9164671646620541412, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
       propertyPath: m_Name
