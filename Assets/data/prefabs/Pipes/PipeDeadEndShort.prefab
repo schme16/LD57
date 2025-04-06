@@ -26,35 +26,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ceb55118842cccd40bacea2f687f1288, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.000031888485
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ceb55118842cccd40bacea2f687f1288, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 43.424583
+      value: -43.475414
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ceb55118842cccd40bacea2f687f1288, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.70710677
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ceb55118842cccd40bacea2f687f1288, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071069
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ceb55118842cccd40bacea2f687f1288, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ceb55118842cccd40bacea2f687f1288, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ceb55118842cccd40bacea2f687f1288, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ceb55118842cccd40bacea2f687f1288, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ceb55118842cccd40bacea2f687f1288, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -63,7 +63,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: ceb55118842cccd40bacea2f687f1288, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: d1cc84e7335a52d4591fd2ecf886bdb6, type: 2}
+      objectReference: {fileID: 2100000, guid: 30a94c3079d000e4a970e3763cd9507a, type: 2}
     - target: {fileID: 919132149155446097, guid: ceb55118842cccd40bacea2f687f1288, type: 3}
       propertyPath: m_Name
       value: PipeDeadEndShort

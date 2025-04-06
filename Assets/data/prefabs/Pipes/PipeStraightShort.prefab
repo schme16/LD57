@@ -63,7 +63,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c5f2e827eb089754d80f84e9c014538d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: d1cc84e7335a52d4591fd2ecf886bdb6, type: 2}
+      objectReference: {fileID: 2100000, guid: a6f2bfd133d789d4f97288b8fb1a230f, type: 2}
     - target: {fileID: 919132149155446097, guid: c5f2e827eb089754d80f84e9c014538d, type: 3}
       propertyPath: m_Name
       value: PipeStraightShort
