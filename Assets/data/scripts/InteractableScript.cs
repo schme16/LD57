@@ -15,7 +15,7 @@ public class InteractableScript : MonoBehaviour {
 	private bool valid;
 	private bool lastValid;
 	private bool lastInView;
-	public bool inView;
+	private bool inView;
 	public bool showOutline;
 	private bool lastShowOutline;
 	public Color outlineColour = new Color(255, 127, 28, 0f);
@@ -48,6 +48,8 @@ public class InteractableScript : MonoBehaviour {
 
 		UpdateOutline();
 
+		inView = PlayerScript.player.interactScript == this;
+
 		//Was a validator func set?
 		if (IsValid is not null) {
 
@@ -77,12 +79,16 @@ public class InteractableScript : MonoBehaviour {
 
 			//If both in range, and valid
 			if (inView && valid) {
+				Debug.Log(9);
 
 				//Was the interact key pressed?
 				if (Input.GetKeyDown(GameController._keyInteract)) {
+					Debug.Log(10);
 
 					//Was an interaction function set?
 					if (OnInteract is not null) {
+
+						Debug.Log(11);
 
 						//Run the func
 						OnInteract.Invoke();

@@ -14,9 +14,9 @@ public class PickupAndHold : MonoBehaviour {
 	public LayerMask rbMaskWhenHeld;
 	[NonSerialized]
 	public LayerMask rbInitialMask;
-	//[NonSerialized]
+	[NonSerialized]
 	public bool isInsidePlayer;
-	//[NonSerialized]
+	[NonSerialized]
 	public bool debounce;
 
 

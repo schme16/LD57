@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using FMODUnity;
@@ -28,6 +29,8 @@ public class PlayerScript : MonoBehaviour {
 	private bool lastLockCamera;
 	public bool lockMouse = true;
 	public float interactionDistance = 1.8f;
+	public float pickupForce = 150f;
+	public LayerMask interactionLayers;
 	public float footstepAudioVolume = 0.5f;
 	public Vector2 interactionTextVisiblePosition = new Vector3(0, 20, 0);
 	public Vector2 interactionTextHiddenPosition = new Vector3(0, -25, 0);
@@ -50,8 +53,8 @@ public class PlayerScript : MonoBehaviour {
 
 	[Header("Tracking")]
 	public InteractableScript interactScript;
-	private InteractableScript lastInteractScript;
-	private bool lastInteractScriptEnabled;
+	public InteractableScript lastInteractScript;
+	public bool lastInteractScriptEnabled;
 	public Transform currentHitObject;
 	public PickupAndHold currentlyHeldObject;
 
@@ -66,6 +69,9 @@ public class PlayerScript : MonoBehaviour {
 
 	private void Start() {
 
+		//Set the static access item
+		player = this;
+
 		//Set the game ontroller
 		gc = FindFirstObjectByType<GameController>();
 
@@ -77,7 +83,10 @@ public class PlayerScript : MonoBehaviour {
 		UpdateLockWalk(true);
 		UpdateLockCamera(true);
 
-		player = this;
+		//Set the inital value for the held item
+		currentlyHeldObject = null;
+
+
 
 
 		//Enable the bg music
@@ -124,7 +133,6 @@ public class PlayerScript : MonoBehaviour {
 				break;
 		}
 
-
 		//Checks if the player movement state has changed
 		UpdateLockWalk();
 
@@ -134,9 +142,26 @@ public class PlayerScript : MonoBehaviour {
 		//Check for interactions
 		CheckForInteractable();
 
-		//Temp
-		if (Input.GetKeyDown(KeyCode.T) && currentlyHeldObject is not null) {
-			DropHeldObject();
+		//Are we currently holding an object?
+		if (currentlyHeldObject is not null) {
+			Debug.Log(6);
+
+			//Did we try to release it?
+			if (Input.GetKeyDown(GameController._keyInteract)) {
+				Debug.Log(7);
+
+				//Drop it
+				DropHeldObject();
+			}
+
+			//Didn't try and release it
+			else {
+
+				Debug.Log(8);
+				//Move it into position 
+				MoveHeldObject();
+			}
+
 		}
 
 	}
@@ -147,17 +172,22 @@ public class PlayerScript : MonoBehaviour {
 
 	private void CheckForInteractable() {
 
-		if (!preventInteraction) {
+		Debug.Log(1);
+		if (!preventInteraction && currentlyHeldObject is null) {
+			Debug.Log(2);
 
 			//Do a ray cast
-			if (Physics.Raycast(gc.cam.transform.position + (gc.cam.transform.forward * 0.3f), gc.cam.transform.forward, out var hitInfo, interactionDistance)) {
+			if (Physics.Raycast(gc.cam.transform.position + (gc.cam.transform.forward * 0.3f), gc.cam.transform.forward, out var hitInfo, interactionDistance, interactionLayers)) {
+				Debug.Log(3);
 
 
 				//Is compatible
 				if (hitInfo.transform.CompareTag("Interactable")) {
+					Debug.Log(4);
 
 					//Was it different to the thing we were already looking at? 
 					if (hitInfo.transform != currentHitObject) {
+						Debug.Log(5);
 						//Update the current object test item
 						currentHitObject = hitInfo.transform;
 
@@ -169,10 +199,10 @@ public class PlayerScript : MonoBehaviour {
 						//Did we find one, and was it enabled?
 						if (interact is not null && interact.enabled) {
 
-							//Mark the old item as not in view
+							/*//Mark the old item as not in view
 							if (interactScript is not null) {
 								interactScript.inView = false;
-							}
+							}*/
 
 							//Update the interactable item shorthand
 							interactScript = interact;
@@ -186,9 +216,9 @@ public class PlayerScript : MonoBehaviour {
 
 						}
 						else {
-							if (interactScript is not null) {
+							/*if (interactScript is not null) {
 								interactScript.inView = false;
-							}
+							}*/
 							interactScript = null;
 							currentHitObject = null;
 						}
@@ -197,9 +227,9 @@ public class PlayerScript : MonoBehaviour {
 
 				//Not compatible
 				else {
-					if (interactScript is not null) {
+					/*if (interactScript is not null) {
 						interactScript.inView = false;
-					}
+					}*/
 					interactScript = null;
 					currentHitObject = null;
 				}
@@ -208,9 +238,9 @@ public class PlayerScript : MonoBehaviour {
 
 			//Nothing found
 			else {
-				if (interactScript is not null) {
+				/*if (interactScript is not null) {
 					interactScript.inView = false;
-				}
+				}*/
 				interactScript = null;
 				currentHitObject = null;
 			}
@@ -232,9 +262,9 @@ public class PlayerScript : MonoBehaviour {
 
 		//Not allowed to interact, so clear currently interacted stuff too
 		else {
-			if (interactScript is not null) {
+			/*if (interactScript is not null) {
 				interactScript.inView = false;
-			}
+			}*/
 
 			interactScript = null;
 			currentHitObject = null;
@@ -243,6 +273,7 @@ public class PlayerScript : MonoBehaviour {
 
 		//Did the interact script value change?
 		if (lastInteractScriptEnabled != interactScript) {
+			UnityEngine.Debug.Log(12);
 			lastInteractScriptEnabled = interactScript;
 			UpdateInteractionText();
 		}
@@ -254,8 +285,8 @@ public class PlayerScript : MonoBehaviour {
 		//Is the interactable script set, and enabled?
 		if (interactScript is not null && interactScript.enabled && !preventInteraction) {
 
-			//Mark it as "in view"
-			interactScript.inView = true;
+			/*//Mark it as "in view"
+			interactScript.inView = true;*/
 
 			if (gc.uiInteractionMessageRectTransform.anchoredPosition != interactionTextVisiblePosition) {
 
@@ -266,13 +297,6 @@ public class PlayerScript : MonoBehaviour {
 
 		//Either interact script not set or is disabled, and we aren't possessing an object
 		else {
-
-			//If the script is set, but is disabled
-			if (interactScript is not null) {
-
-				//Mark it as not in view
-				interactScript.inView = false;
-			}
 
 			if (gc.uiInteractionMessageRectTransform.anchoredPosition != interactionTextHiddenPosition) {
 
@@ -332,37 +356,73 @@ public class PlayerScript : MonoBehaviour {
 		return currentlyHeldObject is null || currentlyHeldObject.IsUnityNull();
 	}
 
-	public void HoldObject(PickupAndHold obj) {
+	public async void HoldObject(PickupAndHold obj) {
+
+		//Set the held object
 		currentlyHeldObject = obj;
+
+		//Parent it to the holder
 		currentlyHeldObject.transform.SetParent(HeldItemHolder);
-		currentlyHeldObject.transform.localPosition = currentlyHeldObject.HoldPosition;
-		currentlyHeldObject.transform.localRotation = Quaternion.identity;
-		currentlyHeldObject.transform.eulerAngles = new Vector3(0, currentlyHeldObject.transform.eulerAngles.y, currentlyHeldObject.transform.eulerAngles.z);
+
+
+		//If it has a rigidbody
 		if (currentlyHeldObject.rb is not null) {
-			currentlyHeldObject.rb.isKinematic = true;
+
+			//Disable gravity
+			currentlyHeldObject.rb.useGravity = false;
+
+			//Set the drag to 10
+			currentlyHeldObject.rb.linearDamping = 10;
+
+			//Freeze the rotation
+			currentlyHeldObject.rb.constraints = RigidbodyConstraints.FreezeRotation;
 		}
+
 		if (currentlyHeldObject.collider is not null) {
 			currentlyHeldObject.collider.excludeLayers = currentlyHeldObject.rbMaskWhenHeld;
 		}
+
+		debounce = true;
+		await UniTask.DelayFrame(1);
+		debounce = false;
 	}
 
 	public async void DropHeldObject() {
 
-		currentlyHeldObject.transform.SetParent(null);
-		if (currentlyHeldObject.rb is not null) {
-			currentlyHeldObject.rb.isKinematic = false;
-			currentlyHeldObject.debounce = true;
-			await UniTask.Delay(250);
-			currentlyHeldObject.debounce = false;
-		}
+		if (!debounce) {
+			//Has a rigidbody
+			if (currentlyHeldObject.rb is not null) {
 
-		if (currentlyHeldObject.collider is not null) {
-			if (!currentlyHeldObject.isInsidePlayer) {
-				currentlyHeldObject.collider.excludeLayers = currentlyHeldObject.rbInitialMask;
+				//Disable gravity
+				currentlyHeldObject.rb.useGravity = true;
+
+				//Set the drag to 10
+				currentlyHeldObject.rb.linearDamping = 1;
+
+				//Freeze the rotation
+				currentlyHeldObject.rb.constraints = RigidbodyConstraints.None;
 			}
-		}
 
-		currentlyHeldObject = null;
+			if (currentlyHeldObject.collider is not null) {
+				if (!currentlyHeldObject.isInsidePlayer) {
+					currentlyHeldObject.collider.excludeLayers = currentlyHeldObject.rbInitialMask;
+				}
+			}
+
+			currentlyHeldObject.transform.SetParent(null);
+
+			currentlyHeldObject = null;
+		}
+	}
+
+	public void MoveHeldObject() {
+
+		//If the item is further than 0.1f away from the holder
+		if (Vector3.Distance(currentlyHeldObject.transform.position, HeldItemHolder.transform.position) > 0.1f) {
+			var moveDirection = (HeldItemHolder.position - currentlyHeldObject.transform.position);
+
+			currentlyHeldObject.rb.AddForce(moveDirection * pickupForce);
+		}
 	}
 
 	private void Landed() {
