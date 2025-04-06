@@ -67,7 +67,7 @@ public class PlayerScript : MonoBehaviour {
 	private float _sprintSpeed;
 	private float lastGrounded;
 	public static PlayerScript player;
-	
+
 
 
 	private void Start() {
@@ -107,6 +107,14 @@ public class PlayerScript : MonoBehaviour {
 
 		firstPersonController.OnPlayerLand.AddListener(Landed);
 		firstPersonController.OnPlayerWalk.AddListener(Walked);
+		
+		
+		//TODO: Re-enable this when the audio is read and the animation is made
+		/*lockMovement = true;
+		lockCamera = true;
+		lockMouse = false;*/
+		
+		
 	}
 
 	private void Update() {
@@ -300,6 +308,7 @@ public class PlayerScript : MonoBehaviour {
 			if (lockMovement) {
 				//Backup the movement speed
 				_moveSpeed = firstPersonController.MoveSpeed;
+				inputs.move = Vector2.zero;
 
 				//Set it to 0
 				firstPersonController.MoveSpeed = 0;
@@ -326,6 +335,8 @@ public class PlayerScript : MonoBehaviour {
 		if (lastLockCamera != lockCamera || force) {
 			lastLockCamera = lockCamera;
 			inputs.cursorInputForLook = !lockCamera;
+			inputs.look = Vector2.zero;
+
 		}
 	}
 
@@ -422,6 +433,18 @@ public class PlayerScript : MonoBehaviour {
 
 		//_.PlayClipAtPoint(sfxList[Random.Range(0, sfxList.Count)], transform.TransformPoint(controller.center), footstepAudioVolume, Random.Range(0.75f, 1.15f));
 	}
+
+	public void AnswerPhone() {
+		lockMovement = true;
+		lockCamera = true;
+		lockMouse = false;
+	}
+
+
+	private void HangupPhone() {
+
+	}
+
 
 	private void OnDestroy() {
 

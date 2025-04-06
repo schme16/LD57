@@ -10,12 +10,14 @@ public class CellServiceTrigger : MonoBehaviour {
 
 	public bool canTrigger;
 	public List<EventReference> audio;
+	
 	public EventReference cellPhoneBuzz;
 
 
 	private void OnTriggerEnter(Collider other) {
 		if (other.CompareTag("Player") && canTrigger) {
 			if (canTrigger) {
+				PlayerScript.player.AnswerPhone();
 				PlayAllMessages();
 			}
 		}

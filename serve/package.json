@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "express": "^5.1.0",
-    "http-proxy-middleware": "^3.0.3",
-    "serve-static": "^2.2.0"
-  }
-}
