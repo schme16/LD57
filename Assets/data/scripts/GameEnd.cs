@@ -10,10 +10,13 @@ public class GameEnd : MonoBehaviour {
 		PlayerScript.player.lockMovement = true;
 		//PlayerScript.player.firstPersonController.enabled = false;
 		PlayerScript.player.controller.enabled = false;
-		//PlayerScript.player.cameraRoot
-		_.RotateLocal(PlayerScript.player.theDoorFull, PlayerScript.player.theDoorFullOpen);
-		_.Translate(PlayerScript.player.transform, PlayerScript.player.theDoor.position);
-		await UniTask.Delay(350);
+		
+		await UniTask.Delay(500);
+		await _.Translate(PlayerScript.player.transform, PlayerScript.player.transform.position + (PlayerScript.player.transform.forward * 2));
+		await UniTask.Delay(1500);
+		await _.RotateLocal(PlayerScript.player.theDoorFull, PlayerScript.player.theDoorFullOpen);
+		await UniTask.Delay(1000);
+		await _.Translate(PlayerScript.player.transform, PlayerScript.player.theDoor.position);
 		PlayerScript.player.fadeOutWhite.gameObject.SetActive(true);
 		await UniTask.Delay((int)(PlayerScript.player.fadeOutWhite.fadeTime * 1000));
 		PlayerScript.player.Die();
