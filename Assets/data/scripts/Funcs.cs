@@ -346,8 +346,6 @@ public class _ : MonoBehaviour {
 				while (currentPosition <= totalLengthInMilliseconds) {
 					audio.EventInstance.getTimelinePosition(out currentPosition);
 
-					Debug.Log($"{currentPosition} / {totalLengthInMilliseconds}");
-
 					// Update the 3D attributes to the current player position
 					audio.EventInstance.set3DAttributes(objectToPlayAt.To3DAttributes());
 

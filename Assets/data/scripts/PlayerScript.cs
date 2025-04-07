@@ -47,10 +47,10 @@ public class PlayerScript : MonoBehaviour {
 	public AudioSource sfxSource;
 	public Animator animator;
 	public Transform HeldItemHolder;
-	public List<EventReference> footstepsStone;
-	public List<EventReference> footstepsWater;
-	public EventReference playerLandStone;
-	public EventReference playerLandWater;
+	public StudioEventEmitter footstepsStone;
+	public StudioEventEmitter footstepsWater;
+	public StudioEventEmitter playerLandStone;
+	public StudioEventEmitter playerLandWater;
 	public Transform mobileModel;
 	public Renderer mobileScreenModel;
 	public StudioEventEmitter phoneCallEmitter;
@@ -425,8 +425,7 @@ public class PlayerScript : MonoBehaviour {
 			lastGrounded = Time.time;
 			var sfxList = inWater ? playerLandWater : playerLandStone;
 
-			AudioManager.instance.PlaceOneShot(sfxList, transform.TransformPoint(controller.center));
-			//_.PlayClipAtPoint(sfxList, transform.TransformPoint(controller.center), footstepAudioVolume, Random.Range(0.75f, 1.15f));
+		_.PlayAudio(sfxList);
 		}
 	}
 
@@ -434,9 +433,7 @@ public class PlayerScript : MonoBehaviour {
 
 
 		var sfxList = inWater ? footstepsWater : footstepsStone;
-		AudioManager.instance.PlaceOneShot(sfxList[Random.Range(0, sfxList.Count)], transform.TransformPoint(controller.center));
-
-		//_.PlayClipAtPoint(sfxList[Random.Range(0, sfxList.Count)], transform.TransformPoint(controller.center), footstepAudioVolume, Random.Range(0.75f, 1.15f));
+		_.PlayAudio(sfxList);
 	}
 
 	public void AnswerPhone() {
