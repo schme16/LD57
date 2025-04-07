@@ -34,6 +34,7 @@ public class TriggerAfterPlay : MonoBehaviour {
 
 			if (enableShovel) {
 				PlayerScript.player.shovelOut = true;
+				Destroy(PlayerScript.player.shovelPickup);
 			}
 		});
 	}

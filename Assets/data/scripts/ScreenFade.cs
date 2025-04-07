@@ -11,11 +11,16 @@ public class ScreenFade : MonoBehaviour {
 	private async void Start() {
 
 		if (fadeOut) {
-			image.color = new Color(0,0,0, 0);
+			var col = image.color;
+			col.a = 0;
+
+			image.color = col;
 			await _.FadeOut(image, fadeTime);
 		}
 		else {
-			image.color = Color.black;
+			var col = image.color;
+			col.a = 1;
+			image.color = col;
 			await _.FadeIn(image, fadeTime);
 		}
 	}

@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 704d315dee95691418859a7888b0f11d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 101.68109
+      value: 130.94792
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 704d315dee95691418859a7888b0f11d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 704d315dee95691418859a7888b0f11d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -102.78228
+      value: -97.70034
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 704d315dee95691418859a7888b0f11d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -83,207 +83,41 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6779187099045862108}
+      addedObject: {fileID: 673584009658973640}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1666452911753077961}
+      addedObject: {fileID: 6358366290695951924}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8434783546085402229}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 684014379226347006}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2915384919833597206}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6353558254147538298}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 828556873652503758}
+      addedObject: {fileID: 5598144791492303364}
   m_SourcePrefab: {fileID: 100100000, guid: 704d315dee95691418859a7888b0f11d, type: 3}
 --- !u!1 &4927039023140133390 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
   m_PrefabInstance: {fileID: 5233519436418017119}
   m_PrefabAsset: {fileID: 0}
---- !u!195 &6779187099045862108
-NavMeshAgent:
+--- !u!135 &673584009658973640
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4927039023140133390}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 1.1
-  m_Speed: 10
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.15
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &1666452911753077961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4927039023140133390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Graph: {fileID: -7655413158913582672, guid: 0f50b6201380bfd4a9dbedcacc32976c, type: 2}
-  m_BlackboardVariableOverridesList:
-  - rid: 1911254846539563062
-  - rid: 1911254846539563279
-  - rid: 1911254846539563280
-  - rid: 1911254846539563281
-  - rid: 1911254846539563282
-  - rid: 1911254846539563283
-  - rid: 1911254846539563284
-  - rid: 1911254846539563285
-  - rid: 1911254846539563591
-  - rid: 1911254846539563602
-  - rid: 1911254846539563604
-  m_IsInitialised: 0
-  m_IsStarted: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: 1911254846539563062
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 1
-          m_Value1: 0
-        Name: Self
-        m_Value: {fileID: 4927039023140133390}
-    - rid: 1911254846539563279
-      type: {class: 'BlackboardVariable`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 540189733886131015
-          m_Value1: 18370285359257929575
-        Name: IsPenned
-        m_Value: 1
-    - rid: 1911254846539563280
-      type: {class: 'BlackboardVariable`1[[RangeDetector, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 1742857755150012649
-          m_Value1: 91873942824410387
-        Name: Range Detector
-        m_Value: {fileID: 8434783546085402229}
-    - rid: 1911254846539563281
-      type: {class: 'BlackboardVariable`1[[LineOfSightDetector, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 9171794909274385634
-          m_Value1: 17427771671770245213
-        Name: Line Of Sight Detector
-        m_Value: {fileID: 684014379226347006}
-    - rid: 1911254846539563282
-      type: {class: 'BlackboardVariable`1[[State, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 15424808973703035736
-          m_Value1: 2476318556687502690
-        Name: State
-        m_Value: 1
-    - rid: 1911254846539563283
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 8493174629896080782
-          m_Value1: 8443186917103213209
-        Name: Pen
-        m_Value: {fileID: 0}
-    - rid: 1911254846539563284
-      type: {class: 'BlackboardVariable`1[[CheckIfDestinationReached, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 11940722912256288748
-          m_Value1: 5178652707495627895
-        Name: Check If Destination Reached
-        m_Value: {fileID: 2915384919833597206}
-    - rid: 1911254846539563285
-      type: {class: 'BlackboardVariable`1[[UnityEngine.AI.NavMeshAgent, UnityEngine.AIModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 1823248382003631400
-          m_Value1: 812246626595892430
-        Name: Agent
-        m_Value: {fileID: 6779187099045862108}
-    - rid: 1911254846539563591
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 14468612824689327602
-          m_Value1: 716561957239452857
-        Name: WalkSpeed
-        m_Value: 10
-    - rid: 1911254846539563602
-      type: {class: 'BlackboardVariable`1[[CheckEnteredPen, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12161919979400324129
-          m_Value1: 9026057196405680375
-        Name: Check Entered Pen
-        m_Value: {fileID: 6353558254147538298}
-    - rid: 1911254846539563604
-      type: {class: 'BlackboardVariable`1[[UnityEngine.Vector3, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 1761005145149919263
-          m_Value1: 17335465274442568290
-        Name: Wander Target
-        m_Value: {x: 101.6811, y: 9.88, z: -102.7823}
---- !u!114 &8434783546085402229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4927039023140133390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92e6077940765ab4f8f69be59af604a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRadius: 20
-  detectionMask:
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 576
-  showDebugVisuals: 1
---- !u!114 &684014379226347006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4927039023140133390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 857034faa37593842a00d0b0292102d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_playerLayerMask:
+    m_Bits: 0
+  m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
-  m_detectionRange: 15
-  m_detectionHeight: 3
-  showDebugVisuals: 1
---- !u!114 &2915384919833597206
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.9386409
+  m_Center: {x: 0, y: 0.4386409, z: 0}
+--- !u!114 &6358366290695951924
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,10 +126,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4927039023140133390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f5400e96ff28634786009472e2a70b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 6994d1517a254f3f8a81689975376a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6353558254147538298
+--- !u!114 &5598144791492303364
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -304,26 +138,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 4927039023140133390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 853704ee23f227f479ca9fd163827fb7, type: 3}
+  m_Script: {fileID: 11500000, guid: 027383dff1f20ea4394c068f8ce8e33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  penTag: Pen
-  detectionRadius: 5.91
-  detectionMask:
-    serializedVersion: 2
-    m_Bits: 1
-  showDebugVisuals: 1
---- !u!114 &828556873652503758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4927039023140133390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac08fecd02c8328458f5f51ed172ab5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 6779187099045862108}
-  speed: 10
+  pen: {fileID: 0}
+  readyForNextPoint: 1
+  point: {x: 0, y: 0, z: 0}
+  agent: {fileID: 0}
+  points:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

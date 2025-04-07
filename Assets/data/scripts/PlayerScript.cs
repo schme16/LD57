@@ -34,7 +34,6 @@ public class PlayerScript : MonoBehaviour {
 	public Vector3 mobileOutOfView;
 	public bool shovelOut;
 	private bool lastShovelOut;
-	public ScreenFade fadeOut;
 
 
 	[Header("Components")]
@@ -42,9 +41,6 @@ public class PlayerScript : MonoBehaviour {
 	public FirstPersonController firstPersonController;
 	public StarterAssetsInputs inputs;
 	public PlayerInput playerInput;
-	public AudioSource bgMusic;
-	public AudioSource sfxSource;
-	public Animator animator;
 	public Transform HeldItemHolder;
 	public StudioEventEmitter footstepsStone;
 	public StudioEventEmitter footstepsWater;
@@ -57,7 +53,13 @@ public class PlayerScript : MonoBehaviour {
 	public Material bossAnsweredMaterial;
 	public ShovelScript shovel;
 	public Animator shovelAnimator;
-
+	public GameObject shovelPickup;
+	public ScreenFade fadeOut;
+	public ScreenFade fadeOutWhite;
+	public Transform theDoor;
+	public Transform theDoorFull;
+	public Vector3 theDoorFullOpen;
+	
 	[Header("Tracking")]
 	public InteractableScript interactScript;
 	public InteractableScript lastInteractScript;

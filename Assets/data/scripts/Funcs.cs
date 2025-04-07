@@ -149,6 +149,25 @@ public class _ : MonoBehaviour {
 		trans.eulerAngles = destination;
 	}
 
+	//Rotates a transform to a specified euler, can be awaited
+	public async static UniTask RotateLocal(Transform trans, Vector3 destination, float speed = 1.05f, EasingFunction.Ease easingFunction = EasingFunction.Ease.EaseInQuad) {
+
+		float t = 0f;
+		var startValue = trans.localEulerAngles;
+		var easeing = new EasingFunction().GetEasingFunction(easingFunction);
+
+		while (t < 1) {
+
+			//Set the angle
+			trans.localEulerAngles = Vector3.Lerp(startValue, destination, easeing(0, 1, t));
+
+			//Update the time value
+			t = Mathf.Clamp(t + (Time.deltaTime * speed), 0, 1);
+			await UniTask.Yield(PlayerLoopTiming.Update);
+		}
+		trans.localEulerAngles = destination;
+	}
+
 	//Scales a transform to a specified Vector3, can be awaited
 	public async static UniTask Scale(Transform trans, Vector3 destination, float speed = 1.05f, EasingFunction.Ease easingFunction = EasingFunction.Ease.EaseInQuad) {
 
@@ -243,7 +262,7 @@ public class _ : MonoBehaviour {
 	}
 
 	//Get's a random point inside nearly any given collider
-	private static Vector3 GetRandomPointInCollider(Collider collider) {
+	public static Vector3 GetRandomPointInCollider(Collider collider) {
 		if (collider is BoxCollider boxCollider) {
 			return GetRandomPointInBoxCollider(boxCollider);
 		}
