@@ -35,6 +35,8 @@ public class PlayerScript : MonoBehaviour {
 	public Vector2 interactionTextVisiblePosition = new Vector3(0, 20, 0);
 	public Vector2 interactionTextHiddenPosition = new Vector3(0, -25, 0);
 	public bool inWater;
+	public Vector3 mobileInView;
+	public Vector3 mobileOutOfView;
 
 	[Header("Components")]
 	public CharacterController controller;
@@ -49,8 +51,11 @@ public class PlayerScript : MonoBehaviour {
 	public List<EventReference> footstepsWater;
 	public EventReference playerLandStone;
 	public EventReference playerLandWater;
+	public Transform mobileModel;
+	public Renderer mobileScreenModel;
 	public StudioEventEmitter phoneCallEmitter;
-
+	public Material bossCallingMaterial;
+	public Material bossAnsweredMaterial;
 
 	[Header("Tracking")]
 	public InteractableScript interactScript;
@@ -89,7 +94,9 @@ public class PlayerScript : MonoBehaviour {
 		//Set the inital value for the held item
 		currentlyHeldObject = null;
 
-
+		SetPhoneScreenMaterials(bossCallingMaterial);
+		
+		mobileModel.localPosition = mobileOutOfView;
 
 
 		//Enable the bg music
@@ -107,14 +114,14 @@ public class PlayerScript : MonoBehaviour {
 
 		firstPersonController.OnPlayerLand.AddListener(Landed);
 		firstPersonController.OnPlayerWalk.AddListener(Walked);
-		
-		
+
+
 		//TODO: Re-enable this when the audio is read and the animation is made
 		/*lockMovement = true;
 		lockCamera = true;
 		lockMouse = false;*/
-		
-		
+
+
 	}
 
 	private void Update() {
@@ -433,16 +440,26 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	public void AnswerPhone() {
+		SetPhoneScreenMaterials(bossCallingMaterial);
+		_.TranslateLocal(mobileModel, mobileInView, 1);
 		lockMovement = true;
 		lockCamera = false;
 		lockMouse = true;
 	}
 
-
-	private void HangupPhone() {
-
+	public void ShowCallAnsweredFromBoss() {
+		SetPhoneScreenMaterials(bossAnsweredMaterial);
 	}
 
+
+	public void HangupPhone() {
+		_.TranslateLocal(mobileModel, mobileOutOfView, 1);
+	}
+
+	public void SetPhoneScreenMaterials(Material mat) {
+		mobileScreenModel.material = mat;
+
+	}
 
 	private void OnDestroy() {
 

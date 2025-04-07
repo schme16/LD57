@@ -1,7 +1,10 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class _ : MonoBehaviour {
 
@@ -210,6 +213,29 @@ public class _ : MonoBehaviour {
 		trans.anchoredPosition = destination;
 	}
 
+
+	//Translates a transform to a specified Vector3, can be awaited
+	public async static UniTask TranslateLocal(Transform trans, Vector3 destination, float speed = 1.05f, EasingFunction.Ease easingFunction = EasingFunction.Ease.EaseInQuad, CancellationToken cancellationToken = default) {
+
+
+		float t = 0f;
+		var startValue = trans.localPosition;
+
+		var easeing = new EasingFunction().GetEasingFunction(easingFunction);
+
+		while (t < 1) {
+
+			//Set the angle
+			trans.localPosition = Vector3.Lerp(startValue, destination, easeing(0, 1, t));
+
+			//Update the time value
+			t = Mathf.Clamp(t + (Time.deltaTime * speed), 0, 1);
+			await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+		}
+
+		trans.localPosition = destination;
+	}
+
 	//Maps a given value, from one range to another
 	public static float Map(float aValue, float aLow, float aHigh, float bLow, float bHigh) {
 		var normal = Mathf.InverseLerp(aLow, aHigh, aValue);
@@ -287,6 +313,64 @@ public class _ : MonoBehaviour {
 		float r1 = Mathf.Sqrt(Random.value);
 		float r2 = Random.value;
 		return (1 - r1) * a + (r1 * (1 - r2)) * b + (r1 * r2) * c;
+	}
+
+
+
+
+	public async static UniTask PlayAudio(StudioEventEmitter audio, GameObject objectToPlayAt = null, CancellationToken cancellationToken = default) {
+
+		if (objectToPlayAt is null) {
+			objectToPlayAt = PlayerScript.player.gameObject;
+		}
+		
+		try {
+
+			/*// Create the event instance
+			EventInstance eventInstance = RuntimeManager.CreateInstance(audio);*/
+
+			// Start the event
+			audio.EventInstance.start();
+			audio.Play();
+
+			// Create a completion source that will be triggered when the event finishes
+			var completionSource = new UniTaskCompletionSource();
+
+			// Poll the playback state until it's no longer playing
+			// Also continuously update the 3D position
+			await UniTask.Create(async () => {
+
+				audio.EventDescription.getLength(out var totalLengthInMilliseconds);
+				audio.EventInstance.getTimelinePosition(out var currentPosition);
+
+				while (currentPosition <= totalLengthInMilliseconds) {
+					audio.EventInstance.getTimelinePosition(out currentPosition);
+
+					Debug.Log($"{currentPosition} / {totalLengthInMilliseconds}");
+
+					// Update the 3D attributes to the current player position
+					audio.EventInstance.set3DAttributes(objectToPlayAt.To3DAttributes());
+
+					completionSource.TrySetResult();
+					await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: cancellationToken); // Update position more frequently (50 times per second)
+				}
+
+				// Clean up the event instance
+				audio.EventInstance.release();
+
+				var triggerAfterPlay = audio.GetComponent<TriggerAfterPlay>();
+				if (triggerAfterPlay) {
+					triggerAfterPlay.OnPlayed.Invoke();
+				}
+
+
+			});
+
+			await completionSource.Task;
+		}
+		catch (Exception ex) {
+			Debug.LogError($"Error playing FMOD audio: {ex.Message}");
+		}
 	}
 
 
