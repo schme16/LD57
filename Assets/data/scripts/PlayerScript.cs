@@ -4,6 +4,7 @@ using StarterAssets;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using Vector3 = UnityEngine.Vector3;
 
 public class PlayerScript : MonoBehaviour {
@@ -33,6 +34,7 @@ public class PlayerScript : MonoBehaviour {
 	public Vector3 mobileOutOfView;
 	public bool shovelOut;
 	private bool lastShovelOut;
+	public ScreenFade fadeOut;
 
 
 	[Header("Components")]
@@ -476,5 +478,14 @@ public class PlayerScript : MonoBehaviour {
 
 	private void OnApplicationPause(bool pauseStatus) {
 		_.SetLockMode(lockMouse ? CursorLockMode.Locked : CursorLockMode.Confined);
+	}
+
+	public async void Die() {
+		lockMovement = true;
+		lockCamera = true;
+		fadeOut.gameObject.SetActive(true);
+		fadeOut.fadeOut = true;
+		await UniTask.Delay((int)(fadeOut.fadeTime * 1000) + 100);
+		SceneManager.LoadScene("data/scenes/menu");
 	}
 }

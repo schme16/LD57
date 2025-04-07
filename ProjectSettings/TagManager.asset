@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - Interactable
+  - Pen
   layers:
   - Default
   - TransparentFX

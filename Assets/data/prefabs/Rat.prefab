@@ -52,9 +52,257 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rat
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424396828587804706, guid: 704d315dee95691418859a7888b0f11d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8003028576119023140, guid: 704d315dee95691418859a7888b0f11d, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b1fbd3ede9119048b14b23d559f6878, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -3215555783603854218, guid: 704d315dee95691418859a7888b0f11d, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 833767592550323814}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8303150942885035202}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8758850500930755502}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7645037476551387705}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8682274749830685160}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5566304815748833793}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1422779702662170151}
   m_SourcePrefab: {fileID: 100100000, guid: 704d315dee95691418859a7888b0f11d, type: 3}
+--- !u!1 &1718646983936187606 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d315dee95691418859a7888b0f11d, type: 3}
+  m_PrefabInstance: {fileID: 1952510011097555335}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &833767592550323814
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718646983936187606}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1.27
+  m_Speed: 15
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.5
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &8303150942885035202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718646983936187606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Graph: {fileID: -7655413158913582672, guid: 0f50b6201380bfd4a9dbedcacc32976c, type: 2}
+  m_BlackboardVariableOverridesList:
+  - rid: 1911254846539563592
+  - rid: 1911254846539563593
+  - rid: 1911254846539563594
+  - rid: 1911254846539563595
+  - rid: 1911254846539563596
+  - rid: 1911254846539563597
+  - rid: 1911254846539563598
+  - rid: 1911254846539563599
+  - rid: 1911254846539563601
+  - rid: 1911254846539563606
+  m_IsInitialised: 0
+  m_IsStarted: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 1911254846539563592
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 1718646983936187606}
+    - rid: 1911254846539563593
+      type: {class: 'BlackboardVariable`1[[RangeDetector, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1742857755150012649
+          m_Value1: 91873942824410387
+        Name: Range Detector
+        m_Value: {fileID: 8758850500930755502}
+    - rid: 1911254846539563594
+      type: {class: 'BlackboardVariable`1[[LineOfSightDetector, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 9171794909274385634
+          m_Value1: 17427771671770245213
+        Name: Line Of Sight Detector
+        m_Value: {fileID: 7645037476551387705}
+    - rid: 1911254846539563595
+      type: {class: 'BlackboardVariable`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 540189733886131015
+          m_Value1: 18370285359257929575
+        Name: IsPenned
+        m_Value: 1
+    - rid: 1911254846539563596
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 8493174629896080782
+          m_Value1: 8443186917103213209
+        Name: Pen
+        m_Value: {fileID: 0}
+    - rid: 1911254846539563597
+      type: {class: 'BlackboardVariable`1[[UnityEngine.AI.NavMeshAgent, UnityEngine.AIModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1823248382003631400
+          m_Value1: 812246626595892430
+        Name: Agent
+        m_Value: {fileID: 833767592550323814}
+    - rid: 1911254846539563598
+      type: {class: 'BlackboardVariable`1[[CheckIfDestinationReached, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 11940722912256288748
+          m_Value1: 5178652707495627895
+        Name: Check If Destination Reached
+        m_Value: {fileID: 8682274749830685160}
+    - rid: 1911254846539563599
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 14468612824689327602
+          m_Value1: 716561957239452857
+        Name: WalkSpeed
+        m_Value: 15
+    - rid: 1911254846539563601
+      type: {class: 'BlackboardVariable`1[[CheckEnteredPen, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 12161919979400324129
+          m_Value1: 9026057196405680375
+        Name: Check Entered Pen
+        m_Value: {fileID: 5566304815748833793}
+    - rid: 1911254846539563606
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Vector3, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1761005145149919263
+          m_Value1: 17335465274442568290
+        Name: Wander Target
+        m_Value: {x: 65.10974, y: 9.88, z: -104.8501}
+--- !u!114 &8758850500930755502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718646983936187606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e6077940765ab4f8f69be59af604a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRadius: 10
+  detectionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  showDebugVisuals: 0
+--- !u!114 &7645037476551387705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718646983936187606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 857034faa37593842a00d0b0292102d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  m_detectionRange: 5
+  m_detectionHeight: 2.71
+  showDebugVisuals: 0
+--- !u!114 &8682274749830685160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718646983936187606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f5400e96ff28634786009472e2a70b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5566304815748833793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718646983936187606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853704ee23f227f479ca9fd163827fb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  penTag: Pen
+  detectionRadius: 5.91
+  detectionMask:
+    serializedVersion: 2
+    m_Bits: 1
+  showDebugVisuals: 0
+--- !u!114 &1422779702662170151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718646983936187606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac08fecd02c8328458f5f51ed172ab5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 833767592550323814}
+  speed: 15
