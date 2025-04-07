@@ -71,7 +71,7 @@ public class CellServiceTrigger : MonoBehaviour {
 
 					}
 
-					await UniTask.Delay(20, cancellationToken: cancellationToken); // Update position more frequently (50 times per second)
+					await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: cancellationToken); // Update position more frequently (50 times per second)
 				}
 
 				// Clean up the event instance

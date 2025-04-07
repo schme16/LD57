@@ -434,8 +434,8 @@ public class PlayerScript : MonoBehaviour {
 
 	public void AnswerPhone() {
 		lockMovement = true;
-		lockCamera = true;
-		lockMouse = false;
+		lockCamera = false;
+		lockMouse = true;
 	}
 
 
