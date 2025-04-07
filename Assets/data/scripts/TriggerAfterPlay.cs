@@ -12,6 +12,7 @@ public class TriggerAfterPlay : MonoBehaviour {
 	public bool showCallAnsweredFromBoss;
 	public bool showMobileModel;
 	public bool hideMobileModel;
+	public bool enableShovel;
 
 
 	void Start() {
@@ -29,6 +30,10 @@ public class TriggerAfterPlay : MonoBehaviour {
 
 			if (hideMobileModel) {
 				PlayerScript.player.HangupPhone();
+			}
+
+			if (enableShovel) {
+				PlayerScript.player.shovelOut = true;
 			}
 		});
 	}
