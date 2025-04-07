@@ -705,6 +705,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shovel
       objectReference: {fileID: 0}
+    - target: {fileID: 214270653899287044, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 698883309761294526, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -761,23 +765,40 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1173413336884267567, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359902592301734229, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5091204849200744837, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7945009339092976036, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1242349606}
+    - targetCorrespondingSourceObject: {fileID: 7945009339092976036, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1301314941}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5091204849200744837, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 401121641}
-    - targetCorrespondingSourceObject: {fileID: 4359902592301734229, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 891781252}
-    - targetCorrespondingSourceObject: {fileID: 1173413336884267567, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1548329721}
+      addedObject: {fileID: 401121644}
   m_SourcePrefab: {fileID: 100100000, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
 --- !u!4 &208974483 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 698883309761294526, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
+  m_PrefabInstance: {fileID: 208974482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &208974484 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7945009339092976036, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
   m_PrefabInstance: {fileID: 208974482}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &249807737
@@ -1622,8 +1643,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5091204849200744837, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
   m_PrefabInstance: {fileID: 208974482}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &401121641
-MeshCollider:
+--- !u!65 &401121644
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1635,15 +1656,14 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2124705421725058983, guid: c73329711818c5f469ee64abed9cbd7c, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.007171687, y: 0.0053551346, z: 0.0029316416}
+  m_Center: {x: 0.0009050003, y: 4.1415707e-10, z: -0.00009518255}
 --- !u!1001 &420120902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1877,7 +1897,7 @@ MonoBehaviour:
       Data2: 1300575139
       Data3: 758023095
       Data4: 1351589022
-    Path: event:/FootstepsWet
+    Path: event:/Footsteps/FootstepsWet
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -2164,7 +2184,7 @@ MonoBehaviour:
       Data2: 1127394808
       Data3: -402320479
       Data4: -1066495201
-    Path: event:/va-player-graffiti-4
+    Path: event:/Player/va-player-graffiti-4
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -2485,7 +2505,7 @@ MonoBehaviour:
       Data2: 1322997017
       Data3: -624824159
       Data4: -957315215
-    Path: event:/PlayerLand-Water
+    Path: event:/Footsteps/PlayerLand-Water
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -2894,7 +2914,7 @@ MonoBehaviour:
       Data2: 1275622904
       Data3: 428435595
       Data4: -1799479891
-    Path: event:/FootstepsDry
+    Path: event:/Footsteps/FootstepsDry
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -3255,7 +3275,7 @@ MonoBehaviour:
       Data2: 1132561896
       Data3: 1953687987
       Data4: -1932681392
-    Path: event:/va-player-graffiti-1
+    Path: event:/Player/va-player-graffiti-1
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -3493,13 +3513,45 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6492359242514800559, guid: 075f65f93f6c5284eb4f531e43eeedf6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 743001320}
   m_SourcePrefab: {fileID: 100100000, guid: 075f65f93f6c5284eb4f531e43eeedf6, type: 3}
 --- !u!4 &743001318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4068266843160200014, guid: 075f65f93f6c5284eb4f531e43eeedf6, type: 3}
   m_PrefabInstance: {fileID: 743001317}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &743001319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6492359242514800559, guid: 075f65f93f6c5284eb4f531e43eeedf6, type: 3}
+  m_PrefabInstance: {fileID: 743001317}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &743001320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743001319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3569a713786b4458e775c45b157f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBeHarmed: 1
+  maxHealth: 3
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBelowHalfHealth:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNoHealth:
+    m_PersistentCalls:
+      m_Calls: []
+  breakAudio: {fileID: 1301314942}
 --- !u!1 &763530071
 GameObject:
   m_ObjectHideFlags: 0
@@ -4283,33 +4335,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8625870788958582527, guid: dd22733608f9898438e69a82b9064ee8, type: 3}
   m_PrefabInstance: {fileID: 858815717}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &891781248 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4359902592301734229, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
-  m_PrefabInstance: {fileID: 208974482}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &891781252
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 891781248}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2534964839176971238, guid: c73329711818c5f469ee64abed9cbd7c, type: 3}
 --- !u!1 &892899186
 GameObject:
   m_ObjectHideFlags: 1
@@ -5473,13 +5498,45 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6492359242514800559, guid: 075f65f93f6c5284eb4f531e43eeedf6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1007914556}
   m_SourcePrefab: {fileID: 100100000, guid: 075f65f93f6c5284eb4f531e43eeedf6, type: 3}
 --- !u!4 &1007914554 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4068266843160200014, guid: 075f65f93f6c5284eb4f531e43eeedf6, type: 3}
   m_PrefabInstance: {fileID: 1007914553}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1007914555 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6492359242514800559, guid: 075f65f93f6c5284eb4f531e43eeedf6, type: 3}
+  m_PrefabInstance: {fileID: 1007914553}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1007914556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007914555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3569a713786b4458e775c45b157f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBeHarmed: 1
+  maxHealth: 3
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBelowHalfHealth:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNoHealth:
+    m_PersistentCalls:
+      m_Calls: []
+  breakAudio: {fileID: 1301314942}
 --- !u!1 &1025231296
 GameObject:
   m_ObjectHideFlags: 0
@@ -6025,7 +6082,7 @@ MonoBehaviour:
       Data2: 1270916031
       Data3: 20150964
       Data4: -985623504
-    Path: event:/va-player-graffiti-2
+    Path: event:/Player/va-player-graffiti-2
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -6639,7 +6696,7 @@ MonoBehaviour:
       Data2: 1266717029
       Data3: -1949559901
       Data4: 1308967271
-    Path: event:/va-player-gecko-gripping 2
+    Path: event:/Gripper/va-player-gecko-gripping 2
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -6852,7 +6909,7 @@ MonoBehaviour:
       Data2: 1190730799
       Data3: 1296831140
       Data4: -12411634
-    Path: event:/va - Davo intro
+    Path: event:/Davo/va - Davo intro
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -6897,6 +6954,69 @@ Transform:
   - {fileID: 453792599}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1242349605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1242349606}
+  - component: {fileID: 1242349607}
+  m_Layer: 8
+  m_Name: hit-sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1242349606
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242349605}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.31964538, y: -0.30974934, z: 0.6602786, w: 0.60490865}
+  m_LocalPosition: {x: 0.010421915, y: -0.00330268, z: -0.00879124}
+  m_LocalScale: {x: 0.008401374, y: 0.010335958, z: 0.010627526}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 208974484}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1242349607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242349605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1627448069
+      Data2: 1257471933
+      Data3: 513815938
+      Data4: 2074002302
+    Path: event:/SFX/sfx-shovel
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 0
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 1
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1244151593
 GameObject:
   m_ObjectHideFlags: 0
@@ -6948,7 +7068,7 @@ MonoBehaviour:
       Data2: 1175831789
       Data3: -250812739
       Data4: 1105046173
-    Path: event:/va-player-gecko-gripping 3
+    Path: event:/Gripper/va-player-gecko-gripping 3
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -7364,6 +7484,69 @@ Transform:
   - {fileID: 799263883}
   m_Father: {fileID: 173946335}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1301314940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1301314941}
+  - component: {fileID: 1301314942}
+  m_Layer: 8
+  m_Name: break-sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1301314941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301314940}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.31964538, y: -0.30974934, z: 0.6602786, w: 0.60490865}
+  m_LocalPosition: {x: 0.010421915, y: -0.00330268, z: -0.00879124}
+  m_LocalScale: {x: 0.008401374, y: 0.010335958, z: 0.010627526}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 208974484}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1301314942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301314940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -216582252
+      Data2: 1178413256
+      Data3: 1356407472
+      Data4: -1397945174
+    Path: event:/SFX/sfx-break-generic
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 0
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 1
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1306429018
 GameObject:
   m_ObjectHideFlags: 0
@@ -7415,7 +7598,7 @@ MonoBehaviour:
       Data2: 1328026813
       Data3: -816840795
       Data4: -1831447338
-    Path: event:/va-player-graffiti-3
+    Path: event:/Player/va-player-graffiti-3
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -8058,6 +8241,35 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 50.000004, y: 1, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1442517836 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6492359242514800559, guid: 075f65f93f6c5284eb4f531e43eeedf6, type: 3}
+  m_PrefabInstance: {fileID: 1422570866270414015}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1442517845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442517836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3569a713786b4458e775c45b157f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBeHarmed: 1
+  maxHealth: 3
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBelowHalfHealth:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNoHealth:
+    m_PersistentCalls:
+      m_Calls: []
+  breakAudio: {fileID: 1301314942}
 --- !u!1 &1445891515
 GameObject:
   m_ObjectHideFlags: 0
@@ -8411,33 +8623,6 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!1 &1548329717 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1173413336884267567, guid: 0fae06d8de3680a47abc9c21ba4e824d, type: 3}
-  m_PrefabInstance: {fileID: 208974482}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1548329721
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548329717}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -462981019419857548, guid: c73329711818c5f469ee64abed9cbd7c, type: 3}
 --- !u!1 &1549163604
 GameObject:
   m_ObjectHideFlags: 0
@@ -8680,7 +8865,7 @@ MonoBehaviour:
       Data2: 1218278690
       Data3: -711944043
       Data4: 383464314
-    Path: event:/va - Player intro
+    Path: event:/Player/va - Player intro
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -9104,7 +9289,7 @@ MonoBehaviour:
       Data2: 1338949204
       Data3: -1163899238
       Data4: 2048824491
-    Path: event:/va-player-cult-icon
+    Path: event:/Player/va-player-cult-icon
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -9867,6 +10052,7 @@ MonoBehaviour:
   OnNoHealth:
     m_PersistentCalls:
       m_Calls: []
+  breakAudio: {fileID: 0}
 --- !u!1 &1903175590
 GameObject:
   m_ObjectHideFlags: 0
@@ -9918,7 +10104,7 @@ MonoBehaviour:
       Data2: 1246902383
       Data3: -1002309501
       Data4: 1557671878
-    Path: event:/PlayerLand-Stone
+    Path: event:/Footsteps/PlayerLand-Stone
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -10092,7 +10278,7 @@ MonoBehaviour:
       Data2: 1298330126
       Data3: 2008785338
       Data4: 240435223
-    Path: event:/va-player-gecko-gripping 1
+    Path: event:/Gripper/va-player-gecko-gripping 1
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -11282,7 +11468,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6492359242514800559, guid: 075f65f93f6c5284eb4f531e43eeedf6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1442517845}
   m_SourcePrefab: {fileID: 100100000, guid: 075f65f93f6c5284eb4f531e43eeedf6, type: 3}
 --- !u!1001 &3712531323543491413
 PrefabInstance:
@@ -11401,6 +11590,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitting: 0
+  hitAudio: {fileID: 1242349607}
+  hitBox: {fileID: 401121644}
+  damage: 1
+  distance: 2
+  mask:
+    serializedVersion: 2
+    m_Bits: 137
+  scale: {x: 0.34, y: 0.24, z: 0.48}
 --- !u!1001 &4772983257298018563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11564,7 +11761,7 @@ PrefabInstance:
     - target: {fileID: 908859343605745305, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
       propertyPath: phoneCallEmitter
       value: 
-      objectReference: {fileID: 8997996947589251129}
+      objectReference: {fileID: 0}
     - target: {fileID: 908859343605745305, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
       propertyPath: mobileOutOfView.x
       value: -0.1928
@@ -12285,9 +12482,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9164671646620541412, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8997996947589251126}
-    - targetCorrespondingSourceObject: {fileID: 9164671646620541412, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8997996947589251129}
     - targetCorrespondingSourceObject: {fileID: 5644314841589105425, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4135013736049992664}
@@ -12517,37 +12711,6 @@ MonoBehaviour:
   OverrideAttenuation: 1
   OverrideMinDistance: 2
   OverrideMaxDistance: 20
---- !u!114 &8997996947589251129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1611276548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
