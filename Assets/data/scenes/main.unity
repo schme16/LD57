@@ -218,6 +218,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2077144366}
+    - targetCorrespondingSourceObject: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1470740380}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
 --- !u!4 &43492955 stripped
@@ -771,20 +774,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTrigger: 1
-  audio:
-  - Guid:
-      Data1: -257484156
-      Data2: 1298618536
-      Data3: 1216011156
-      Data4: -1659374838
-    Path: event:/CellPhoneBeep
-  cellPhoneBuzz:
-    Guid:
-      Data1: -1472782345
-      Data2: 1341408141
-      Data3: 951453105
-      Data4: -941538597
-    Path: event:/CellPhoneBuzz
+  audio: []
+  cellPhoneBuzz: {fileID: 0}
+  audioEndOffsetMS: 0
 --- !u!136 &281604094
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2009,6 +2001,69 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6090422372802916730, guid: ccc32b56affb1ed409cfcac0bbcbec47, type: 3}
   m_PrefabInstance: {fileID: 556402534}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &562150734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 562150735}
+  - component: {fileID: 562150736}
+  m_Layer: 0
+  m_Name: beep
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &562150735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562150734}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1470740380}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &562150736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562150734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -257484156
+      Data2: 1298618536
+      Data3: 1216011156
+      Data4: -1659374838
+    Path: event:/CellPhoneBeep
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 0
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 1
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &619063710 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1507636620937791836, guid: 7097ba7ba649e1f41bba232312bdcbd8, type: 3}
@@ -2522,31 +2577,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canTrigger: 1
   audio:
-  - Guid:
-      Data1: -889109730
-      Data2: 1190730799
-      Data3: 1296831140
-      Data4: -12411634
-    Path: event:/va - Davo intro
-  - Guid:
-      Data1: -257484156
-      Data2: 1298618536
-      Data3: 1216011156
-      Data4: -1659374838
-    Path: event:/CellPhoneBeep
-  - Guid:
-      Data1: 721365992
-      Data2: 1218278690
-      Data3: -711944043
-      Data4: 383464314
-    Path: event:/va - Player intro
-  cellPhoneBuzz:
+  - {fileID: 562150736}
+  - {fileID: 1223574183}
+  - {fileID: 1605281131}
+  - {fileID: 562150736}
+  cellPhoneBuzz: {fileID: 764782122}
+  audioEndOffsetMS: 2000
+--- !u!1 &764782120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 764782121}
+  - component: {fileID: 764782122}
+  m_Layer: 0
+  m_Name: buzz
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &764782121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764782120}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1470740380}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &764782122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764782120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
     Guid:
       Data1: -1472782345
       Data2: 1341408141
       Data3: 951453105
       Data4: -941538597
     Path: event:/CellPhoneBuzz
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 0
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 1
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!4 &787198828 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 41456931767297511, guid: 1420b156be97ef74ea57028d60525251, type: 3}
@@ -3095,20 +3194,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTrigger: 1
-  audio:
-  - Guid:
-      Data1: -257484156
-      Data2: 1298618536
-      Data3: 1216011156
-      Data4: -1659374838
-    Path: event:/CellPhoneBeep
-  cellPhoneBuzz:
-    Guid:
-      Data1: -1472782345
-      Data2: 1341408141
-      Data3: 951453105
-      Data4: -941538597
-    Path: event:/CellPhoneBuzz
+  audio: []
+  cellPhoneBuzz: {fileID: 0}
+  audioEndOffsetMS: 0
 --- !u!136 &919350186
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4233,6 +4321,69 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1 &1223574181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1223574182}
+  - component: {fileID: 1223574183}
+  m_Layer: 0
+  m_Name: va - davo intro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1223574182
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223574181}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1470740380}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1223574183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223574181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -889109730
+      Data2: 1190730799
+      Data3: 1296831140
+      Data4: -12411634
+    Path: event:/va - Davo intro
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 0
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 1
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1230805552
 GameObject:
   m_ObjectHideFlags: 0
@@ -4920,6 +5071,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7309030556390922358, guid: 974503fa5f182604a954416b2179044c, type: 3}
   m_PrefabInstance: {fileID: 1464732946}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1470740379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1470740380}
+  m_Layer: 0
+  m_Name: intro audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1470740380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470740379}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.000000014901161, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.4699998, z: 0}
+  m_LocalScale: {x: 1.8574, y: 1.3074238, z: 1.8574}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 764782121}
+  - {fileID: 562150735}
+  - {fileID: 1223574182}
+  - {fileID: 1605281130}
+  m_Father: {fileID: 43492955}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1486721574
 GameObject:
   m_ObjectHideFlags: 0
@@ -4956,6 +5142,69 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2457027952720885384, guid: 39b00cb8d8b49b7499a8e972d1a60d1e, type: 3}
   m_PrefabInstance: {fileID: 326505623}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1605281129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1605281130}
+  - component: {fileID: 1605281131}
+  m_Layer: 0
+  m_Name: va - player intro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1605281130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605281129}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1470740380}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1605281131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605281129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 721365992
+      Data2: 1218278690
+      Data3: -711944043
+      Data4: 383464314
+    Path: event:/va - Player intro
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 0
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 1
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1611276548 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9164671646620541412, guid: 1f31e80ec0dc6614099634a86201ab68, type: 3}

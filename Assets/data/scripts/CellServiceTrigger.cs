@@ -9,9 +9,11 @@ using FMOD.Studio;
 public class CellServiceTrigger : MonoBehaviour {
 
 	public bool canTrigger;
-	public List<EventReference> audio;
-	
-	public EventReference cellPhoneBuzz;
+	//public List<EventReference> audio;
+	public List<StudioEventEmitter> audio;
+
+	public StudioEventEmitter cellPhoneBuzz;
+	public int audioEndOffsetMS;
 
 
 	private void OnTriggerEnter(Collider other) {
@@ -39,15 +41,16 @@ public class CellServiceTrigger : MonoBehaviour {
 	}
 
 
-	private async UniTask PlayMessage(EventReference audio, CancellationToken cancellationToken = default) {
+	private async UniTask PlayMessage(StudioEventEmitter audio, CancellationToken cancellationToken = default) {
 
 		try {
 
-			// Create the event instance
-			EventInstance eventInstance = RuntimeManager.CreateInstance(audio);
+			/*// Create the event instance
+			EventInstance eventInstance = RuntimeManager.CreateInstance(audio);*/
 
 			// Start the event
-			eventInstance.start();
+			audio.EventInstance.start();
+			audio.Play();
 
 			// Create a completion source that will be triggered when the event finishes
 			var completionSource = new UniTaskCompletionSource();
@@ -56,26 +59,23 @@ public class CellServiceTrigger : MonoBehaviour {
 			// Also continuously update the 3D position
 			await UniTask.Create(async () => {
 
-				PLAYBACK_STATE playbackState = PLAYBACK_STATE.PLAYING;
+				audio.EventDescription.getLength(out var totalLengthInMilliseconds);
+				audio.EventInstance.getTimelinePosition(out var currentPosition);
 
-				while (playbackState != PLAYBACK_STATE.STOPPED && !cancellationToken.IsCancellationRequested) {
+				while (currentPosition <= totalLengthInMilliseconds) {
+					audio.EventInstance.getTimelinePosition(out currentPosition);
+
+					Debug.Log($"{currentPosition} / {totalLengthInMilliseconds}");
 
 					// Update the 3D attributes to the current player position
-					eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(PlayerScript.player.gameObject));
-					eventInstance.getPlaybackState(out playbackState);
+					audio.EventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(PlayerScript.player.gameObject));
 
-					if (playbackState == PLAYBACK_STATE.STOPPED) {
-
-						completionSource.TrySetResult();
-						break;
-
-					}
-
+					completionSource.TrySetResult();
 					await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: cancellationToken); // Update position more frequently (50 times per second)
 				}
 
 				// Clean up the event instance
-				eventInstance.release();
+				audio.EventInstance.release();
 
 			});
 
