@@ -133,7 +133,7 @@ public class MainMenuController : MonoBehaviour {
 		_.Translate(musicSliderRect, new Vector3(0, -588.8226f, 0), 1, easeOut);
 		_.Translate(BackToMainMenuButton, new Vector3(0, -212, 0), 1, easeOut);
 
-		_.Translate(gameTitle, new Vector3(0, -22, 0), 1, easeIn);
+		_.Translate(gameTitle, new Vector3(0, -435.8f, 0), 1, easeIn);
 		_.Translate(StartButton, new Vector3(0, 150, 0), 1, easeIn);
 		_.Translate(OptionsButton, new Vector3(0, 50, 0), 1, easeIn);
 	}
