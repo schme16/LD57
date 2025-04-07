@@ -1,10 +1,6 @@
-using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using FMODUnity;
 using UnityEngine;
-using System.Threading;
-using FMOD.Studio;
 
 public class CellServiceTrigger : MonoBehaviour {
 

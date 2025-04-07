@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using FMODUnity;
 using StarterAssets;
-using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
 public class PlayerScript : MonoBehaviour {
@@ -37,6 +31,9 @@ public class PlayerScript : MonoBehaviour {
 	public bool inWater;
 	public Vector3 mobileInView;
 	public Vector3 mobileOutOfView;
+	public bool shovelOut;
+	private bool lastShovelOut;
+
 
 	[Header("Components")]
 	public CharacterController controller;
@@ -56,6 +53,8 @@ public class PlayerScript : MonoBehaviour {
 	public StudioEventEmitter phoneCallEmitter;
 	public Material bossCallingMaterial;
 	public Material bossAnsweredMaterial;
+	public ShovelScript shovel;
+	public Animator shovelAnimator;
 
 	[Header("Tracking")]
 	public InteractableScript interactScript;
@@ -95,16 +94,8 @@ public class PlayerScript : MonoBehaviour {
 		currentlyHeldObject = null;
 
 		SetPhoneScreenMaterials(bossCallingMaterial);
-		
+
 		mobileModel.localPosition = mobileOutOfView;
-
-
-		//Enable the bg music
-		//TODO: make this a setting!
-		//bgMusic.enabled = true;
-
-		//Play it
-		//bgMusic.Play();
 
 		//Set the interaction ui message to the default hidden position
 		gc.uiInteractionMessageRectTransform.anchoredPosition = new Vector3(0, -25, 0);
@@ -114,13 +105,6 @@ public class PlayerScript : MonoBehaviour {
 
 		firstPersonController.OnPlayerLand.AddListener(Landed);
 		firstPersonController.OnPlayerWalk.AddListener(Walked);
-
-
-		//TODO: Re-enable this when the audio is read and the animation is made
-		/*lockMovement = true;
-		lockCamera = true;
-		lockMouse = false;*/
-
 
 	}
 
@@ -159,6 +143,28 @@ public class PlayerScript : MonoBehaviour {
 
 		//Check for interactions
 		CheckForInteractable();
+
+
+		//Does shovel state switching
+		if (lastShovelOut != shovelOut) {
+			lastShovelOut = shovelOut;
+
+			if (shovelOut) {
+				Debug.Log(111);
+				shovelAnimator.SetTrigger("bring out");
+			}
+			else {
+
+				Debug.Log(2222);
+				shovelAnimator.SetTrigger("put away");
+			}
+		}
+
+		//handles the shovel hit
+		if (shovelOut && !shovel.hitting && Input.GetKeyDown(KeyCode.Mouse0)) {
+			shovelAnimator.SetTrigger("hit");
+		}
+
 
 		//Are we currently holding an object?
 		if (currentlyHeldObject is not null) {
@@ -425,7 +431,7 @@ public class PlayerScript : MonoBehaviour {
 			lastGrounded = Time.time;
 			var sfxList = inWater ? playerLandWater : playerLandStone;
 
-		_.PlayAudio(sfxList);
+			_.PlayAudio(sfxList);
 		}
 	}
 
