@@ -1,6 +1,4 @@
-﻿using System;
-using System.Xml.Linq;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class GameEnd : MonoBehaviour {

@@ -39,6 +39,8 @@ public class MainMenuController : MonoBehaviour {
 
 	private async void Start() {
 
+		Cursor.lockState = CursorLockMode.Confined;
+
 		easeIn = EasingFunction.Ease.EaseInOutBack;
 		easeOut = EasingFunction.Ease.EaseInOutBack;
 
